@@ -1,0 +1,25 @@
+{
+  "name": "keelung-maritime-plaza",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "packageManager": "pnpm@10.13.1",
+  "scripts": {
+    "dev": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
+    "check": "astro check",
+    "cf:types": "wrangler types",
+    "deploy": "pnpm build && wrangler deploy"
+  },
+  "devDependencies": {
+    "@astrojs/check": "^0.9.4",
+    "@astrojs/sitemap": "^3.6.0",
+    "@tailwindcss/vite": "^4.3.3",
+    "@types/node": "^24.0.0",
+    "astro": "^7.1.5",
+    "tailwindcss": "^4.3.3",
+    "typescript": "^5.9.3",
+    "wrangler": "^4.115.0"
+  }
+}
