@@ -1,0 +1,9 @@
+{
+  "name": "基隆海洋廣場旅遊指南",
+  "short_name": "海洋廣場",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#f9faf8",
+  "theme_color": "#123047",
+  "icons": []
+}
