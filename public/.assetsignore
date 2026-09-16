@@ -1,0 +1,37 @@
+# Cloudflare Wrangler 上傳靜態資源時的忽略清單（語法同 .gitignore）
+# 此檔會被複製到 dist/client，僅影響部署上傳，不影響本機檔案。
+#
+# ⚠️ 請勿忽略 _headers：Cloudflare Workers 會解析它套用 CSP、X-Frame-Options、
+#    Referrer-Policy 等安全回應標頭，且該檔本身不會被當作靜態資源對外提供。
+
+# 忽略清單本身
+.assetsignore
+
+# 來源對照檔（對外提供沒有意義，也不該暴露原始結構）
+*.map
+
+# 暫存、備份與編輯器殘留
+*.tmp
+*.bak
+*.orig
+*.swp
+*~
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# 未壓縮的原始素材與設計工作檔（網站只提供已轉檔的 WebP/PNG/SVG）
+*.psd
+*.ai
+*.sketch
+*.fig
+*.xcf
+*.heic
+*.tif
+*.tiff
+*.raw
+
+# 目錄形式的素材暫存區（若日後於 public/ 建立請一併排除）
+_draft/
+_raw/
+_sources/

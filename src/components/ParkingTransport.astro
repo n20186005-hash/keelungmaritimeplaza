@@ -1,0 +1,124 @@
+---
+const mapNavigationUrl =
+  "https://www.google.com/maps/dir/?api=1&destination=25.1309627%2C121.7413639";
+
+const ways = [
+  {
+    label: "台鐵",
+    title: "基隆車站南站出口，步行 3–5 分鐘",
+    text: "從台北、宜蘭方向搭火車前來最方便。出站後往港區與國門廣場方向前進，即可接上木棧平台。",
+  },
+  {
+    label: "國道客運",
+    title: "基隆轉運站，步行 1–3 分鐘",
+    text: "從台北轉運站出發的國道客運多停靠於此，下車後依港區方向步行，是雨天也能快速抵達的選擇。",
+  },
+  {
+    label: "自駕與停車",
+    title: "停在車站周邊或東岸一帶，再步行前往",
+    text: "廣場本身沒有專屬停車場。周邊有車站周邊收費停車場、東岸一帶的地下停車場與路邊停車格等類型，步行約 5–10 分鐘；假日與連假車位緊張，建議優先搭乘大眾運輸。",
+  },
+];
+
+const table = [
+  {
+    mode: "台鐵",
+    place: "基隆車站（南站出口）",
+    minutes: "步行約 3–5 分鐘",
+    for: "從台北、宜蘭方向前來，最穩定",
+  },
+  {
+    mode: "國道客運",
+    place: "基隆轉運站",
+    minutes: "步行約 1–3 分鐘",
+    for: "從台北轉運站搭車，雨天也少淋雨",
+  },
+  {
+    mode: "自駕",
+    place: "車站周邊與東岸一帶的收費停車場",
+    minutes: "步行約 5–10 分鐘",
+    for: "攜帶行李、親子家庭或串聯市區行程",
+  },
+  {
+    mode: "機車",
+    place: "市區與車站周邊停車格",
+    minutes: "步行約 1–5 分鐘",
+    for: "在地與短程旅客，請依現場標示停放",
+  },
+  {
+    mode: "步行串聯",
+    place: "沿忠一路、仁三路往廟口方向",
+    minutes: "步行約 5–8 分鐘（約 400 公尺）",
+    for: "看完港景直接接晚餐與逛街",
+  },
+];
+---
+
+<section class="section parking-section" id="parking" aria-labelledby="parking-title">
+  <div class="shell">
+    <div class="section-heading centered-heading">
+      <p class="kicker">停車與交通</p>
+      <h2 id="parking-title">開車來怎麼停？搭車來怎麼走？</h2>
+      <p>海洋廣場位於車站、轉運站與港水之間，多數交通方式都在步行 10 分鐘內。以下依「方式」整理，實際費率、營業時間與車位狀況請以現場公告為準。</p>
+    </div>
+
+    <div class="transport-grid">
+      {
+        ways.map((item) => (
+          <article>
+            <div class="transport-icon">
+              <svg viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M4 17h16M6 17l2-10h8l2 10M9 11h6" />
+              </svg>
+            </div>
+            <span>{item.label}</span>
+            <h3>{item.title}</h3>
+            <p>{item.text}</p>
+          </article>
+        ))
+      }
+    </div>
+
+    <div class="seasons-table-wrap parking-table-wrap">
+      <table class="seasons-table">
+        <thead>
+          <tr>
+            <th scope="col">交通方式</th>
+            <th scope="col">下車／停放位置</th>
+            <th scope="col">步行時間</th>
+            <th scope="col">適合誰</th>
+          </tr>
+        </thead>
+        <tbody>
+          {
+            table.map((row) => (
+              <tr>
+                <th scope="row">{row.mode}</th>
+                <td>{row.place}</td>
+                <td>{row.minutes}</td>
+                <td>{row.for}</td>
+              </tr>
+            ))
+          }
+        </tbody>
+      </table>
+    </div>
+
+    <div class="parking-nav">
+      <div>
+        <p class="kicker">導航設定</p>
+        <h3>直接把座標貼進地圖</h3>
+        <ul>
+          <li><b>地址</b>基隆市仁愛區忠一路 3-2 號</li>
+          <li><b>座標</b>25.1309627, 121.7413639</li>
+          <li><b>Plus Code</b>4PJR+9G 基隆市仁愛區</li>
+        </ul>
+        <p class="parking-nav-note">導航建議以「基隆海洋廣場」或上述座標搜尋；若前往停車場，請先確認該停車場的營業時間與步行動線。</p>
+      </div>
+      <a class="button button-solid button-large" href={mapNavigationUrl} target="_blank" rel="noopener noreferrer">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 21s7-6 7-12a7 7 0 1 0-14 0c0 6 7 12 7 12Z"/><circle cx="12" cy="9" r="2.4"/></svg>
+        開啟 Google 地圖導航
+      </a>
+    </div>
+  </div>
+</section>

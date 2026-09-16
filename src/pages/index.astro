@@ -1,8 +1,17 @@
 ---
 import "../styles/global.css";
+import WeatherPanel from "../components/WeatherPanel.astro";
+import QuarterlyStrategy from "../components/QuarterlyStrategy.astro";
+import HeritageStories from "../components/HeritageStories.astro";
+import FacilityTable from "../components/FacilityTable.astro";
+import NightViewGuide from "../components/NightViewGuide.astro";
+import ParkingTransport from "../components/ParkingTransport.astro";
 
 const mapNavigationUrl =
   "https://www.google.com/maps/dir/?api=1&destination=25.1309627%2C121.7413639";
+const mapsShareUrl = "https://maps.app.goo.gl/Rug87UtBSy7vggwb8";
+const govTourismUrl = "https://klctb.klcg.gov.tw/";
+const cwaUrl = "https://www.cwa.gov.tw/";
 ---
 
 <!doctype html>
@@ -10,22 +19,31 @@ const mapNavigationUrl =
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>基隆海洋廣場｜交通、夜景、郵輪與周邊散步指南</title>
-    <meta name="description" content="基隆海洋廣場完整旅遊指南，整理開放時間、交通方式、最佳參觀時間、港灣夜景、郵輪觀賞、雨天提醒、實景照片及市中心步行路線。" />
+    <title>基隆海洋廣場（Keelung Maritime Plaza）｜基隆港夜景、停車交通與廟口夜市散步指南</title>
+    <meta name="description" content="基隆海洋廣場（Keelung Maritime Plaza）免費開放，從基隆火車站步行 3–5 分鐘即達。整理基隆港夜景最佳拍攝時段、黑鳶盤旋與郵輪進港觀賞重點、周邊停車與大眾運輸指引，以及步行 5–8 分鐘串聯廟口夜市的散步路線。" />
     <meta name="theme-color" content="#123047" />
     <meta name="color-scheme" content="light" />
     <link rel="canonical" href="https://keelungmaritimeplaza.com/" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
     <link rel="manifest" href="/site.webmanifest" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    <meta name="apple-mobile-web-app-title" content="海洋廣場" />
     <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="KeelungMaritimePlaza.com" />
     <meta property="og:locale" content="zh_TW" />
-    <meta property="og:title" content="基隆海洋廣場｜從車站走進港灣的第一站" />
-    <meta property="og:description" content="交通、最佳時間、真實照片、雨天提醒與30分鐘至半日散步路線。" />
+    <meta property="og:title" content="基隆海洋廣場 Keelung Maritime Plaza｜基隆港夜景、停車交通與散步指南" />
+    <meta property="og:description" content="基隆海洋廣場免費開放，從基隆火車站步行 3–5 分鐘即達。整理基隆港夜景最佳拍攝時段、黑鳶與郵輪觀賞重點、周邊停車與大眾運輸指引，以及步行 5–8 分鐘串聯廟口夜市的散步路線。" />
     <meta property="og:url" content="https://keelungmaritimeplaza.com/" />
     <meta property="og:image" content="https://keelungmaritimeplaza.com/og/keelung-maritime-plaza-og.jpg" />
     <meta property="og:image:width" content="1200" />
     <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content="基隆海洋廣場（Keelung Maritime Plaza）與基隆港港灣實景" />
     <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="基隆海洋廣場 Keelung Maritime Plaza｜基隆港夜景、停車交通與散步指南" />
+    <meta name="twitter:description" content="基隆海洋廣場免費開放，從基隆火車站步行 3–5 分鐘即達。整理基隆港夜景最佳拍攝時段、黑鳶與郵輪觀賞重點、周邊停車與大眾運輸指引，以及步行 5–8 分鐘串聯廟口夜市的散步路線。" />
+    <meta name="twitter:image" content="https://keelungmaritimeplaza.com/og/keelung-maritime-plaza-og.jpg" />
     <!-- Google Analytics 4 -->
     <script is:inline async src="https://www.googletagmanager.com/gtag/js?id=G-HXM22WWPKP"></script>
     <script is:inline>
@@ -34,8 +52,9 @@ const mapNavigationUrl =
       gtag('js', new Date());
       gtag('config', 'G-HXM22WWPKP');
     </script>
-    <script is:inline type="application/ld+json">{"@context":"https://schema.org","@type":"TouristAttraction","name":"基隆海洋廣場","alternateName":"Keelung Maritime Plaza","description":"基隆港旁的開放式公共廣場，適合欣賞船隻、港灣風景、雨港景色與夜間燈光。","url":"https://keelungmaritimeplaza.com/","image":["https://keelungmaritimeplaza.com/images/hero-desktop.webp","https://keelungmaritimeplaza.com/images/photo-night.webp","https://keelungmaritimeplaza.com/images/photo-rain.webp"],"isAccessibleForFree":true,"publicAccess":true,"address":{"@type":"PostalAddress","streetAddress":"忠一路3-2號","addressLocality":"基隆市","addressRegion":"仁愛區","addressCountry":"TW"},"geo":{"@type":"GeoCoordinates","latitude":25.1309627,"longitude":121.7413639},"openingHoursSpecification":{"@type":"OpeningHoursSpecification","dayOfWeek":["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"],"opens":"00:00","closes":"23:59"}}</script>
-    <script is:inline type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"基隆海洋廣場需要門票嗎？","acceptedAnswer":{"@type":"Answer","text":"不需要。這裡是免費開放的公共空間。"}},{"@type":"Question","name":"海洋廣場幾點關門？","acceptedAnswer":{"@type":"Answer","text":"基隆官方旅遊資料標示為24小時開放的開放式空間。"}},{"@type":"Question","name":"從基隆火車站怎麼去？","acceptedAnswer":{"@type":"Answer","text":"由基隆火車站南站出口步行約3至5分鐘即可抵達。"}},{"@type":"Question","name":"一定看得到郵輪嗎？","acceptedAnswer":{"@type":"Answer","text":"不一定。郵輪需依靠港計畫而定，但平時仍能欣賞港景與各類船隻。"}},{"@type":"Question","name":"建議停留多久？","acceptedAnswer":{"@type":"Answer","text":"單純散步與拍照約30至60分鐘；若等待黃昏或串聯市中心，可預留更久。"}},{"@type":"Question","name":"雨天適合前往嗎？","acceptedAnswer":{"@type":"Answer","text":"可以感受雨港氛圍，但木棧平台可能濕滑，港邊也可能風大。"}},{"@type":"Question","name":"海洋廣場有專屬停車場嗎？","acceptedAnswer":{"@type":"Answer","text":"建議使用基隆車站、市中心或東岸周邊停車場，再步行前往。"}},{"@type":"Question","name":"海洋廣場和國門廣場一樣嗎？","acceptedAnswer":{"@type":"Answer","text":"兩者相鄰但重點不同。國門廣場連接車站與港區，海洋廣場則更靠近水面與觀景平台。"}}]}</script>
+    <script is:inline type="application/ld+json">{"@context":"https://schema.org","@type":["TouristAttraction","CivicStructure"],"@id":"https://keelungmaritimeplaza.com/#attraction","name":"基隆海洋廣場","alternateName":["海洋廣場","Keelung Maritime Plaza","基隆 Keelung Maritime Plaza"],"description":"基隆海洋廣場（Keelung Maritime Plaza）位於台灣基隆市仁愛區，是緊鄰基隆港的開放式公共廣場與觀景台，適合欣賞船隻、港灣風景、雨港景色與夜間燈光。","url":"https://keelungmaritimeplaza.com/","image":["https://keelungmaritimeplaza.com/images/hero-desktop.webp","https://keelungmaritimeplaza.com/images/photo-night.webp","https://keelungmaritimeplaza.com/images/photo-rain.webp"],"isAccessibleForFree":true,"publicAccess":true,"aggregateRating":{"@type":"AggregateRating","ratingValue":"4.3","reviewCount":"19865","bestRating":"5","worstRating":"1"},"hasMap":"https://maps.app.goo.gl/Rug87UtBSy7vggwb8","sameAs":["https://maps.app.goo.gl/Rug87UtBSy7vggwb8","https://klctb.klcg.gov.tw/"],"address":{"@type":"PostalAddress","streetAddress":"忠一路3-2號","addressLocality":"基隆市仁愛區","addressRegion":"基隆市","postalCode":"200","addressCountry":"TW"},"geo":{"@type":"GeoCoordinates","latitude":25.1309627,"longitude":121.7413639},"openingHoursSpecification":{"@type":"OpeningHoursSpecification","dayOfWeek":["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"],"opens":"00:00","closes":"23:59"}}</script>
+    <script is:inline type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"台灣","item":"https://keelungmaritimeplaza.com/#taiwan"},{"@type":"ListItem","position":2,"name":"基隆市","item":"https://keelungmaritimeplaza.com/#keelung"},{"@type":"ListItem","position":3,"name":"仁愛區","item":"https://keelungmaritimeplaza.com/#renai-district"},{"@type":"ListItem","position":4,"name":"基隆海洋廣場","item":"https://keelungmaritimeplaza.com/"}]}</script>
+    <script is:inline type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"基隆海洋廣場需要門票嗎？","acceptedAnswer":{"@type":"Answer","text":"不需要。這裡是免費開放的公共空間。"}},{"@type":"Question","name":"海洋廣場幾點關門？","acceptedAnswer":{"@type":"Answer","text":"基隆官方旅遊資料標示為24小時開放的開放式空間。"}},{"@type":"Question","name":"從基隆火車站怎麼去？","acceptedAnswer":{"@type":"Answer","text":"由基隆火車站南站出口步行約3至5分鐘即可抵達。"}},{"@type":"Question","name":"一定看得到郵輪嗎？","acceptedAnswer":{"@type":"Answer","text":"不一定。郵輪需依靠港計畫而定，但平時仍能欣賞港景與各類船隻。"}},{"@type":"Question","name":"建議停留多久？","acceptedAnswer":{"@type":"Answer","text":"單純散步與拍照約30至60分鐘；若等待黃昏或串聯市中心，可預留更久。"}},{"@type":"Question","name":"雨天適合前往嗎？","acceptedAnswer":{"@type":"Answer","text":"可以感受雨港氛圍，但木棧平台可能濕滑，港邊也可能風大。"}},{"@type":"Question","name":"海洋廣場有專屬停車場嗎？","acceptedAnswer":{"@type":"Answer","text":"建議使用基隆車站、市中心或東岸周邊停車場，再步行前往。"}},{"@type":"Question","name":"海洋廣場和國門廣場一樣嗎？","acceptedAnswer":{"@type":"Answer","text":"兩者相鄰但重點不同。國門廣場連接車站與港區，海洋廣場則更靠近水面與觀景平台。"}},{"@type":"Question","name":"什麼季節最適合造訪基隆海洋廣場？","acceptedAnswer":{"@type":"Answer","text":"各季各有特色：春夏適合看船與黃昏散步，秋冬雨港氛圍與夜景倒影最鮮明；出發前建議先查看即時天氣與降雨機率。"}},{"@type":"Question","name":"輪椅或嬰兒車可以進入海洋廣場嗎？","acceptedAnswer":{"@type":"Answer","text":"廣場與木棧平台以平緩動線為主，部分路段設有坡道銜接，輪椅與嬰兒車大致可通行；實際無障礙動線依現場公告為準。"}},{"@type":"Question","name":"基隆為什麼被稱為「雨港」？","acceptedAnswer":{"@type":"Answer","text":"冬季東北季風挾帶水氣、受迎風地形抬升而降雨；夏季則以午後雷陣雨與颱風降雨為主，因此形成全年有雨、秋冬季更為明顯的氣候特色。"}},{"@type":"Question","name":"在港邊盤旋的「老鷹」是什麼鳥？","acceptedAnswer":{"@type":"Answer","text":"多半是黑鳶（俗稱老鷹）。港區食物來源穩定，讓黑鳶長期在港區上空盤旋覓食；觀察時請保持距離，不要餵食或丟擲食物。"}},{"@type":"Question","name":"基隆海洋廣場是什麼時候出現的？","acceptedAnswer":{"@type":"Answer","text":"海洋廣場原為小艇碼頭周邊的作業岸線，於 2010 年整理為向港面延伸的木棧觀景平台，讓旅客與市民能更貼近港水、船隻與山城天際線。"}},{"@type":"Question","name":"可以在港邊下水或釣魚嗎？","acceptedAnswer":{"@type":"Answer","text":"港區屬商港水域，有船隻進出與港務作業，不開放戲水；能否垂釣請依現場公告與主管機關規範，並留意自身安全。"}},{"@type":"Question","name":"基隆海洋廣場附近有停車場嗎？","acceptedAnswer":{"@type":"Answer","text":"廣場本身沒有專屬停車場，周邊有車站周邊收費停車場、東岸一帶的地下停車場與路邊停車格等類型，步行約 5 至 10 分鐘；假日與連假車位緊張，建議優先搭乘火車或客運前往。"}},{"@type":"Question","name":"從基隆海洋廣場走到基隆廟口夜市要多久？","acceptedAnswer":{"@type":"Answer","text":"沿忠一路、仁三路步行約 5 至 8 分鐘（約 400 公尺）即可抵達，是結束港邊散步後最順路的用餐選擇。"}},{"@type":"Question","name":"幾點來拍基隆海洋廣場夜景最好？","acceptedAnswer":{"@type":"Answer","text":"建議日落前 30 至 45 分鐘抵達，先看金色光線下的港景，再等日落後 20 至 40 分鐘的藍調時刻；雨後夜晚的濕潤地面倒影最具雨港特色。"}},{"@type":"Question","name":"在基隆海洋廣場可以看到郵輪嗎？","acceptedAnswer":{"@type":"Answer","text":"大型郵輪須依照基隆港的靠港計畫進出，通常白天靠泊、午後或傍晚離港。想看大船，建議出發前先查詢當日郵輪船期。"}}]}</script>
   </head>
   <body>
     <a class="skip-link" href="#main">跳到主要內容</a>
@@ -57,9 +76,13 @@ const mapNavigationUrl =
 
         <nav class="desktop-nav" aria-label="主要導覽">
           <a href="#highlights">景點特色</a>
-          <a href="#best-time">最佳時間</a>
+          <a href="#weather">即時天氣</a>
+          <a href="#night-view">夜景攝影</a>
+          <a href="#quarterly">季度策略</a>
+          <a href="#heritage">港城故事</a>
           <a href="#routes">遊覽路線</a>
-          <a href="#transport">交通方式</a>
+          <a href="#parking">停車交通</a>
+          <a href="#services">周邊設施</a>
           <a href="#faq">常見問題</a>
         </nav>
 
@@ -70,10 +93,16 @@ const mapNavigationUrl =
       </div>
       <nav class="mobile-anchor-nav" aria-label="頁面段落">
         <a href="#highlights">特色</a>
+        <a href="#weather">天氣</a>
         <a href="#best-time">時間</a>
+        <a href="#quarterly">季度</a>
+        <a href="#heritage">故事</a>
+        <a href="#night-view">夜景</a>
         <a href="#gallery">照片</a>
         <a href="#routes">路線</a>
-        <a href="#transport">交通</a>
+        <a href="#parking">停車</a>
+        <a href="#services">設施</a>
+        <a href="#reviews">評價</a>
         <a href="#faq">問答</a>
       </nav>
     </header>
@@ -86,9 +115,17 @@ const mapNavigationUrl =
         </picture>
         <div class="hero-shade"></div>
         <div class="shell hero-content">
-          <p class="eyebrow"><span></span> 基隆港・仁愛區</p>
-          <h1 id="hero-title">從基隆車站<br /><span>走進港灣的第一站</span></h1>
-          <p class="hero-lead">沿著木棧平台看船、吹海風、等待港灣亮燈。從基隆火車站南站出口步行約3–5分鐘，不需門票，也不需預約。</p>
+          <p class="eyebrow"><span></span> 基隆港・台灣基隆市仁愛區</p>
+          <h1 id="hero-title">基隆海洋廣場<br /><span>Keelung Maritime Plaza・走進港灣的第一站</span></h1>
+          <nav class="hero-breadcrumb" aria-label="地理位置歸屬">
+            <ol>
+              <li>台灣</li>
+              <li>基隆市</li>
+              <li>仁愛區</li>
+              <li aria-current="page">基隆海洋廣場</li>
+            </ol>
+          </nav>
+          <p class="hero-lead">基隆海洋廣場（Keelung Maritime Plaza）位於基隆市仁愛區、正對基隆港，是旅客抵達基隆後認識這座港都的第一站。沿著木棧平台看船、吹海風、等待港灣亮燈——從基隆火車站南站出口步行約3–5分鐘，不需門票，也不需預約。</p>
           <div class="hero-actions">
             <a class="button button-solid" href={mapNavigationUrl} target="_blank" rel="noopener noreferrer">
               <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 21s7-6 7-12a7 7 0 1 0-14 0c0 6 7 12 7 12Z"/><circle cx="12" cy="9" r="2.4"/></svg>
@@ -128,11 +165,66 @@ const mapNavigationUrl =
         </div>
       </section>
 
+      <div class="weather-anchor" id="weather">
+        <WeatherPanel server:defer>
+          <section class="section weather-section" slot="fallback" aria-labelledby="weather-loading-title">
+            <div class="shell">
+              <div class="section-heading centered-heading">
+                <p class="kicker">即時天氣</p>
+                <h2 id="weather-loading-title">現在的基隆港邊，天氣如何？</h2>
+                <p>出發前先看港邊的即時天氣與未來一週趨勢，決定要不要帶傘、穿什麼、幾點來看夕陽。</p>
+              </div>
+              <div class="weather-card" aria-busy="true">
+                <div class="weather-now">
+                  <span class="weather-placeholder weather-placeholder-icon" aria-hidden="true"></span>
+                  <span class="weather-placeholder weather-placeholder-temp" aria-hidden="true"></span>
+                  <span class="weather-placeholder weather-placeholder-line" aria-hidden="true"></span>
+                </div>
+                <div class="weather-body">
+                  <p class="weather-loading-text">正在取得港區最新天氣與一週預報⋯⋯</p>
+                </div>
+              </div>
+            </div>
+          </section>
+        </WeatherPanel>
+      </div>
+
+      <section class="section reviews-section" id="reviews" aria-labelledby="reviews-title">
+        <div class="shell">
+          <div class="section-heading centered-heading">
+            <p class="kicker">遊客評價</p>
+            <h2 id="reviews-title">來自 Google 地圖用戶的評分</h2>
+            <p>評價來自谷歌地圖用戶評價，<a class="text-link text-link-dark" href={mapsShareUrl} target="_blank" rel="noopener noreferrer">點擊查看谷歌地圖全部評價 <span>↗</span></a></p>
+          </div>
+          <div class="reviews-card">
+            <div class="reviews-score">
+              <strong>4.3<span>/ 5</span></strong>
+              <div class="stars" role="img" aria-label="Google 地圖平均評分 4.3 分（滿分 5 分）">
+                <span class="stars-base" aria-hidden="true">★★★★★</span>
+                <span class="stars-fill" aria-hidden="true" style="--rating: 4.3">★★★★★</span>
+              </div>
+              <p>19,865 則 Google 地圖用戶評價</p>
+              <p class="reviews-sync-note">評分與評價數同步自谷歌地圖（Google Maps）用戶評價 · 2026 年 9 月 · <a href={mapsShareUrl} target="_blank" rel="noopener noreferrer">點擊查看谷歌地圖全部評價↗</a></p>
+            </div>
+            <div class="reviews-copy">
+              <h3>多數旅客怎麼說</h3>
+              <p>基隆海洋廣場在 Google 地圖上累積近兩萬則用戶評價，平均評分 4.3 分。旅客普遍提到港灣第一排的開闊視野、傍晚亮燈後的夜景氛圍，以及從基隆車站步行即可抵達的便利位置。</p>
+              <p class="reviews-source">評分與評價內容同步自 Google 地圖用戶評價，同步時間 2026 年 9 月；評分與評價內容版權歸原作者與 Google 地圖所有。評價僅於本頁展示，實際內容以 Google 地圖最新顯示為準。</p>
+              <a class="button button-solid" href={mapsShareUrl} target="_blank" rel="noopener noreferrer">
+                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 21s7-6 7-12a7 7 0 1 0-14 0c0 6 7 12 7 12Z"/><circle cx="12" cy="9" r="2.4"/></svg>
+                在谷歌地圖查看全部評價
+              </a>
+            </div>
+          </div>
+        </div>
+      </section>
+
       <section class="section intro-section" id="highlights">
         <div class="shell split-intro">
           <div class="section-heading sticky-heading">
             <p class="kicker">第一次來，先知道</p>
             <h2>不是大型景區，<br />卻是最自然的基隆開場</h2>
+            <p>歡迎來到<strong>基隆海洋廣場</strong>——一般簡稱「海洋廣場」，即網域 KeelungMaritimePlaza.com 所指的 <strong>Keelung Maritime Plaza</strong>。它位於<strong>台灣基隆市仁愛區</strong>的核心地帶，緊鄰基隆港，是旅客造訪基隆與基隆港周邊的第一站。</p>
             <p>海洋廣場位在車站、市中心與港水之間。它的價值不是排滿行程，而是讓旅客在抵達後幾分鐘內，就能看見基隆真正的港都樣貌。</p>
           </div>
           <div class="tip-list">
@@ -223,6 +315,62 @@ const mapNavigationUrl =
         </div>
       </section>
 
+      <section class="section seasons-section" id="seasons" aria-labelledby="seasons-title">
+        <div class="shell">
+          <div class="section-heading centered-heading">
+            <p class="kicker">季節策略</p>
+            <h2 id="seasons-title">四季造訪海洋廣場的策略</h2>
+            <p>基隆素有「雨港」之稱，全年有雨、秋冬季東北季風明顯。下表依基隆氣象站長年觀測的氣候特徵，整理各季節的造訪重點與提醒。</p>
+          </div>
+          <div class="seasons-table-wrap">
+            <table class="seasons-table">
+              <thead>
+                <tr>
+                  <th scope="col">季節</th>
+                  <th scope="col">氣候特徵</th>
+                  <th scope="col">人潮</th>
+                  <th scope="col">適合的體驗</th>
+                  <th scope="col">出發提醒</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <th scope="row">春（3–5月）</th>
+                  <td>回暖舒適，仍有春雨與濕涼早晚</td>
+                  <td>中等</td>
+                  <td>清晨與黃昏光線柔和，適合長時間散步與拍照</td>
+                  <td>天氣多變，攜帶輕便雨具與外套</td>
+                </tr>
+                <tr>
+                  <th scope="row">夏（6–8月）</th>
+                  <td>炎熱潮濕，午後雷陣雨，颱風季節</td>
+                  <td>暑假期間較多</td>
+                  <td>黃昏看船吹海風，等待傍晚亮燈</td>
+                  <td>防曬補水，留意颱風與海上警報</td>
+                </tr>
+                <tr>
+                  <th scope="row">秋（9–11月）</th>
+                  <td>東北季風增強，降雨日數增加</td>
+                  <td>漸少</td>
+                  <td>雨港氛圍最濃，夜間燈光與濕潤地面倒影</td>
+                  <td>防風防雨，木棧濕滑請放慢腳步</td>
+                </tr>
+                <tr>
+                  <th scope="row">冬（12–2月）</th>
+                  <td>多雨、風大、涼冷</td>
+                  <td>觀光人潮最少</td>
+                  <td>雨港意象最鮮明，適合串聯熱食與室內行程</td>
+                  <td>保暖防滑，強風時段避免靠近護欄</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <p class="seasons-note">各季體感依年度天況而異，出發前建議先參考本頁的即時天氣與未來一週趨勢。</p>
+        </div>
+      </section>
+
+      <QuarterlyStrategy />
+
       <section class="panorama-section" aria-label="基隆港夜景全景">
         <img src="/images/photo-panorama.webp" width="2400" height="362" loading="lazy" alt="從基隆海洋廣場望向基隆港的寬幅夜景" />
         <div class="panorama-overlay"></div>
@@ -232,6 +380,8 @@ const mapNavigationUrl =
           <span>從白天港景一路看到城市燈光亮起</span>
         </div>
       </section>
+
+      <NightViewGuide />
 
       <section class="section gallery-section" id="gallery">
         <div class="shell">
@@ -262,6 +412,8 @@ const mapNavigationUrl =
           </div>
         </div>
       </section>
+
+      <HeritageStories />
 
       <dialog class="lightbox" data-lightbox aria-labelledby="lightbox-caption">
         <button class="lightbox-close" type="button" data-lightbox-close aria-label="關閉照片">×</button>
@@ -306,6 +458,90 @@ const mapNavigationUrl =
         </div>
       </section>
 
+      <section class="section plan-section" id="plans" aria-labelledby="plans-title">
+        <div class="shell">
+          <div class="section-heading centered-heading">
+            <p class="kicker">行程建議</p>
+            <h2 id="plans-title">推薦的通用路線，與按同行成員的選擇</h2>
+            <p>不知道怎麼排？先從半日與全日的通用路線開始；若同行成員有特定需求，再參考下方三種客製走法。</p>
+          </div>
+
+          <div class="plan-grid">
+            <article class="plan-card plan-card-half">
+              <span class="plan-badge">半日方案</span>
+              <h3>港灣精華散步（約 3 小時）</h3>
+              <ol>
+                <li><b>基隆車站南站出口 → 國門廣場</b><small>熟悉車站、市區與港區的相對位置（約 20 分）</small></li>
+                <li><b>海洋廣場木棧平台</b><small>看船、拍地標、觀察黑鳶（約 60 分）</small></li>
+                <li><b>慶安宮與市中心街區</b><small>走入歷史街區與商家巷弄（約 40 分）</small></li>
+                <li><b>廟口周邊晚餐</b><small>以在地小吃結束行程後返程（約 60 分）</small></li>
+              </ol>
+              <p>適合下午抵達、想一次收集港景與市區氛圍的旅客。</p>
+              <p class="plan-tips"><b>步行距離</b>約 2.5–3 公里，動線以平緩為主，沿途皆有休息座位。<br /><b>雨天備案</b>縮短港邊停留，改為車站商場、騎樓街區與廟口周邊的室內行程。</p>
+            </article>
+            <article class="plan-card plan-card-full">
+              <span class="plan-badge">全日方案</span>
+              <h3>港都一日縱走（約 6–8 小時）</h3>
+              <ol>
+                <li><b>上午：車站與國門廣場周邊</b><small>建立方向感，順道補給（約 40 分）</small></li>
+                <li><b>上午末：海洋廣場</b><small>光線充足時看船與港區作業（約 60 分）</small></li>
+                <li><b>午後：東岸港區或市區高處</b><small>換一個角度俯瞰港口與山城（約 2 小時）</small></li>
+                <li><b>黃昏：回到海洋廣場</b><small>從白天港景等待城市亮燈（約 60 分）</small></li>
+                <li><b>夜間：廟口周邊晚餐</b><small>以小吃與街景結束一天（約 90 分）</small></li>
+              </ol>
+              <p>適合把海洋廣場當作基地，上下半場都回到港邊的走法。</p>
+              <p class="plan-tips"><b>步行距離</b>約 6–8 公里，含一段東岸港區或市中心高處的坡道。<br /><b>雨天備案</b>把戶外高處觀景改為市區室內景點，黃昏再回到港邊看燈光倒影。</p>
+            </article>
+          </div>
+
+          <div class="audience-heading">
+            <h3>按同行成員選擇</h3>
+            <p>同樣的港邊，不同的節奏。三種客製走法都以車站為起點，可自由增減停留時間。</p>
+          </div>
+          <div class="audience-grid">
+            <article class="audience-card">
+              <div class="transport-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="9" cy="7" r="3"/><path d="M4 20a5 5 0 0 1 10 0"/><circle cx="17.5" cy="8.5" r="2.5"/><path d="M14 20a4 4 0 0 1 7 0"/></svg></div>
+              <span>親子家庭・約 2–3 小時</span>
+              <h3>看船與老鷹的放電路線</h3>
+              <ul>
+                <li>出發前先使用車站洗手間與補給</li>
+                <li>國門廣場開放空間讓孩子伸展手腳</li>
+                <li>海洋廣場看船進出、找黑鳶盤旋</li>
+                <li>提早前往廟口周邊用餐，避開尖峰</li>
+              </ul>
+              <p class="audience-carry"><b>建議攜帶</b>飲水、帽子、輕便雨具與替換衣物；嬰兒車以輕便型較好推行。</p>
+              <p>嬰兒車大致可通行木棧平台，部分路段以坡道銜接；請隨時牽好孩童，與水邊保持距離。</p>
+            </article>
+            <article class="audience-card">
+              <div class="transport-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 8h3l2-3h6l2 3h3v11H4z"/><circle cx="12" cy="13" r="3.5"/></svg></div>
+              <span>攝影與自然觀察・黃昏前 1 小時抵達</span>
+              <h3>從藍調時刻到港灣燈光</h3>
+              <ul>
+                <li>廣角拍攝港灣全景與山城輪廓</li>
+                <li>長焦捕捉船隻細節與黑鳶動態</li>
+                <li>入夜後以腳架拍水面倒影</li>
+                <li>雨天後的濕潤地面倒影最具雨港感</li>
+              </ul>
+              <p class="audience-carry"><b>建議攜帶</b>腳架、拭鏡布與防水袋；藍調時刻前約 30 分鐘卡位較從容。</p>
+              <p>取景請保持在護欄內側；港區上空為管制空域，未經許可請勿操作空拍機。</p>
+            </article>
+            <article class="audience-card">
+              <div class="transport-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="5" r="2.2"/><path d="M5 9h14M12 9v5m0 0l-3 6m3-6l3 6"/></svg></div>
+              <span>低體力與無障礙・約 1–1.5 小時</span>
+              <h3>車站直達的平緩觀景走法</h3>
+              <ul>
+                <li>由南站出口直達，全程以平緩動線為主</li>
+                <li>選擇靠近車站一側的觀景位置</li>
+                <li>利用座位區分段休息、慢慢看船</li>
+                <li>洗手間與補給都在車站內</li>
+              </ul>
+              <p class="audience-carry"><b>建議攜帶</b>防風外套、輕便座椅或摺疊杖；沿車站一側觀景可少走回頭路。</p>
+              <p>無障礙動線與坡道狀況依現場公告為準，建議結伴同行較安心。</p>
+            </article>
+          </div>
+        </div>
+      </section>
+
       <section class="section transport-section" id="transport">
         <div class="shell">
           <div class="section-heading transport-heading">
@@ -338,10 +574,12 @@ const mapNavigationUrl =
               <p class="kicker">目的地資訊</p>
               <h3>基隆市仁愛區忠一路 3-2 號</h3>
               <p>座標：25.1309627, 121.7413639</p>
+              <p class="location-plus-code">Plus Code：4PJR+9G 基隆市仁愛區</p>
               <div class="location-actions">
                 <a class="button button-solid" href={mapNavigationUrl} target="_blank" rel="noopener noreferrer">開啟地圖導航</a>
                 <a class="button button-outline" href="#faq">查看行前問答</a>
               </div>
+              <p class="location-official">官方與地區旅遊資訊可參考 <a href={govTourismUrl} target="_blank" rel="noopener noreferrer">基隆市文化觀光局（klctb.klcg.gov.tw）↗</a></p>
             </div>
             <div class="map-embed">
               <iframe
@@ -356,6 +594,96 @@ const mapNavigationUrl =
               ></iframe>
             </div>
           </div>
+        </div>
+      </section>
+
+      <ParkingTransport />
+
+      <section class="section services-section" id="services" aria-labelledby="services-title">
+        <div class="shell">
+          <div class="section-heading centered-heading">
+            <p class="kicker">訪客服務與周邊設施</p>
+            <h2 id="services-title">出發前，先認識周邊的設施類型</h2>
+            <p>海洋廣場本身是開放的觀景空間，多數生活機能集中在車站與市中心一側。以下為中立客觀的類型概述，不涉及特定商家推薦。</p>
+          </div>
+          <div class="services-grid">
+            <article>
+              <div class="transport-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 10h16v10H4z"/><path d="M7 10V7h10v3M9 20v-4h6v4M8 14h.01M16 14h.01"/></svg></div>
+              <span>洗手間</span>
+              <h3>車站與商場為主要選擇</h3>
+              <p>廣場為開放空間，未設固定洗手間；最近的洗手間多位於基隆車站與周邊商場內，建議抵達前先使用。</p>
+            </article>
+            <article>
+              <div class="transport-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="4" y="4" width="16" height="14" rx="2"/><path d="M4 9h16M9 18v3M15 18v3M8.5 13h.01M15.5 13h.01"/></svg></div>
+              <span>停車</span>
+              <h3>無專屬停車場，車位假日緊張</h3>
+              <p>周邊提供車站停車場、民營停車場與路邊停車格等類型；假日期間一位難求，建議優先搭大眾運輸。</p>
+            </article>
+            <article>
+              <div class="transport-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 3v8a3 3 0 0 0 6 0V3M9 11v10M16 3c-1.5 2-2 3.5-2 5s.5 2.5 2 3v10"/></svg></div>
+              <span>餐飲</span>
+              <h3>夜市小吃、咖啡館與連鎖餐飲</h3>
+              <p>餐飲類型以廟口夜市小吃、咖啡館與連鎖速食為主，多位於市中心與廟口周邊，從廣場步行可達。</p>
+            </article>
+            <article>
+              <div class="transport-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 21V5l2-2h8l2 2h4v16z"/><path d="M10 21v-6h4v6M8 9h.01M12 9h.01M16 9h.01M8 13h.01M16 13h.01"/></svg></div>
+              <span>住宿</span>
+              <h3>商務旅館與背包客棧為主</h3>
+              <p>市區與車站周邊有商務旅館與背包客棧等類型，適合停留一晚，搭配晨昏兩個時段的港景。</p>
+            </article>
+            <article>
+              <div class="transport-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 8h16l-1.5 12h-13z"/><path d="M9 8V5h6v3"/></svg></div>
+              <span>商超與補給</span>
+              <h3>便利商店與超市沿線分布</h3>
+              <p>便利商店與多位於車站與市中心沿線，可補充飲水、輕食、雨具與行動糧，營業時間以現場為準。</p>
+            </article>
+            <article>
+              <div class="transport-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M13 3l-8 10h6l-1 8 8-10h-6z"/></svg></div>
+              <span>加油與充電</span>
+              <h3>加油站外圍分布，充電點漸增</h3>
+              <p>加油站多位於市區外圍道路；電動車充電站與行動電源租借服務逐年增加，出發前建議先確認位置與營業時間。</p>
+            </article>
+            <article>
+              <div class="transport-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 3h6v6h6v6h-6v6H9v-6H3V9h6z"/></svg></div>
+              <span>醫療與藥妝</span>
+              <h3>藥局、診所與區域醫院</h3>
+              <p>市中心沿線有藥局與診所等類型，區域醫院也鄰近市區；建議自備常備藥，緊急狀況請撥 119 或就近求助。</p>
+            </article>
+            <article>
+              <div class="transport-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 7h18v10H3z"/><path d="M3 11h18M7 15h4M15 15h2"/></svg></div>
+              <span>金融與提款</span>
+              <h3>ATM 與金融機構沿線分布</h3>
+              <p>車站、商場與市中心可找到 ATM 與金融機構；部分攤商僅收現金，建議隨身備妥少量現金。</p>
+            </article>
+            <article>
+              <div class="transport-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 8V5h8v3M6 8h12v12H6z"/><path d="M9 12h6"/></svg></div>
+              <span>行李寄放</span>
+              <h3>車站寄物與住宿寄放</h3>
+              <p>車站周邊與部分住宿提供寄放服務；大型行李在木棧平台與窄巷較不便，建議先寄放再輕鬆看港。</p>
+            </article>
+            <article>
+              <div class="transport-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3a8 8 0 0 1 8 8H4a8 8 0 0 1 8-8Z"/><path d="M12 11v10M8 21h8"/></svg></div>
+              <span>遮雨與休息</span>
+              <h3>騎樓、商場與座位區</h3>
+              <p>廣場為開放空間，遮蔭與避雨設施有限；夏季建議避開正午，雨天可到車站或商場暫歇再出發。</p>
+            </article>
+            <article>
+              <div class="transport-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="5" r="2.2"/><path d="M5 9h14M12 9v5m0 0l-3 6m3-6l3 6"/></svg></div>
+              <span>無障礙動線</span>
+              <h3>坡道銜接的平緩路線</h3>
+              <p>車站至港邊以平緩動線為主，部分路段以坡道銜接；遇施工或活動可能調整，請以現場公告為準。</p>
+            </article>
+            <article>
+              <div class="transport-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 4h14v16H5z"/><path d="M9 9h6M9 13h6M9 17h3"/></svg></div>
+              <span>旅遊諮詢</span>
+              <h3>車站與市區服務據點</h3>
+              <p>車站與市中心設有旅遊、交通諮詢類型的服務據點；服務項目與開放時間依各單位公告為準。</p>
+            </article>
+          </div>
+
+          <FacilityTable />
+
+          <p class="services-note">以上為設施類型概述，實際營業與開放狀況請以現場公告為準；本站不推薦或代言任何特定商家。</p>
         </div>
       </section>
 
@@ -382,6 +710,59 @@ const mapNavigationUrl =
         </div>
       </section>
 
+      <section class="section nearby-section" aria-labelledby="nearby-title">
+        <div class="shell">
+          <div class="section-heading">
+            <p class="kicker">周邊地標</p>
+            <h2 id="nearby-title">海洋廣場周邊的地標與景點</h2>
+            <p>造訪基隆海洋廣場（Keelung Maritime Plaza）時，旅客可以輕鬆步行探索周邊的歷史地標與景點，包括<strong>國門廣場</strong>與<strong>基隆廟口夜市</strong>；港區與市中心周邊還有慶安宮、基隆火車站與東岸商場，都在步行可達範圍內。</p>
+          </div>
+          <div class="nearby-grid">
+            <article>
+              <span>車站門戶</span>
+              <h3>國門廣場</h3>
+              <p>連接基隆車站與港區的開放空間，是從車站走向海洋廣場的必經門戶。</p>
+            </article>
+            <article>
+              <span>在地小吃</span>
+              <h3>基隆廟口夜市</h3>
+              <p>沿忠一路、仁三路步行約 5–8 分鐘（約 400 公尺）即可抵達，是結束港邊散步後用餐的首選。</p>
+            </article>
+            <article>
+              <span>歷史街區</span>
+              <h3>慶安宮</h3>
+              <p>基隆市中心的歷史廟宇，鄰近廟口夜市，適合串聯半日市區行程。</p>
+            </article>
+            <article>
+              <span>交通樞紐</span>
+              <h3>基隆火車站與轉運站</h3>
+              <p>台鐵與國道客運的抵達點，出站後 3–5 分鐘即可走上海洋廣場木棧平台。</p>
+            </article>
+            <article>
+              <span>城市觀景</span>
+              <h3>基隆塔</h3>
+              <p>可俯瞰基隆港與市區的觀景設施，從港邊前往車程約 10 分鐘，適合安排在港邊散步之後。</p>
+            </article>
+            <article>
+              <span>海洋科普</span>
+              <h3>國立海洋科技博物館</h3>
+              <p>以海洋主題為主的博物館園區，位於基隆市中正區，車程約 15–20 分鐘，適合安排半日行程。</p>
+            </article>
+            <article>
+              <span>漁港日常</span>
+              <h3>崁仔頂魚市場</h3>
+              <p>從海洋廣場步行約 10–15 分鐘可達，是基隆最具代表性的漁獲集散地，凌晨時段最熱鬧。</p>
+            </article>
+            <article>
+              <span>地質海景</span>
+              <h3>和平島公園</h3>
+              <p>以海蝕地形與海景步道聞名的園區，車程約 10–15 分鐘，適合與港邊行程安排在同一天。</p>
+            </article>
+          </div>
+          <p class="seasons-note">步行與車程時間為概估，實際會受路況、天氣與開放時間影響；各景點的營業與開放狀況請以現場公告為準。交通與停車方式請參考<a class="text-link text-link-dark" href="#parking">停車與交通指南</a>。</p>
+        </div>
+      </section>
+
       <section class="section rain-section">
         <div class="shell rain-layout">
           <figure>
@@ -397,6 +778,87 @@ const mapNavigationUrl =
               <li><span>✓</span><div><strong>不要跨越護欄</strong><p>拍攝船隻或鳥類時，保持在公共步行範圍內。</p></div></li>
               <li><span>✓</span><div><strong>施工與活動依現場為準</strong><p>港區空間可能因工程或活動調整動線。</p></div></li>
             </ul>
+          </div>
+        </div>
+      </section>
+
+      <section class="section learn-section" id="learn" aria-labelledby="learn-title">
+        <div class="shell">
+          <div class="section-heading centered-heading">
+            <p class="kicker">科普與訪客責任</p>
+            <h2 id="learn-title">認識這座港，再當一位好訪客</h2>
+            <p>海洋廣場不只是觀景台，更是基隆港故事的一部分。理解它的歷史與生態，也理解身為訪客的責任。</p>
+          </div>
+          <div class="learn-layout">
+            <div class="learn-stories">
+              <article>
+                <span>歷史</span>
+                <h3>從「雞籠」到基隆港</h3>
+                <p>基隆古稱「雞籠」，清代取「基地昌隆」之意改稱基隆。基隆港自清代開港、日治時期大幅擴建後，長期是台灣北部最重要的國際商港與軍港之一，港與城市自此緊密相連。</p>
+              </article>
+              <article>
+                <span>誕生</span>
+                <h3>海洋廣場的由來</h3>
+                <p>海洋廣場原為小艇碼頭周邊的水域與碼頭線，2010 年闢建為向港面延伸的木棧觀景平台，讓旅客能以第一排視角貼近港水、船隻與山城天際線。</p>
+              </article>
+              <article>
+                <span>生態</span>
+                <h3>黑鳶與港灣生態</h3>
+                <p>基隆港區是台灣最容易觀察黑鳶（俗稱老鷹）的地點之一。牠們常在港區上空盤旋、撿拾水面魚屑，是港灣環境的重要指標物種，也是許多旅客造訪時的驚喜。</p>
+              </article>
+              <article>
+                <span>氣候</span>
+                <h3>雨港的名稱怎麼來</h3>
+                <p>基隆面迎東北季風，秋冬季降雨頻繁，「雨港」之名由此而來。頻繁的雨勢造就了廣場夜間濕潤地面與燈光倒影的獨特景致，雨後反而是許多攝影者最愛的時刻。</p>
+              </article>
+            </div>
+            <div class="learn-duty">
+              <h3>訪客責任</h3>
+              <p>讓港口繼續歡迎下一位旅客：</p>
+              <ul class="check-list">
+                <li><span>✓</span><div><strong>不餵食野生動物</strong><p>讓黑鳶與港區鳥類維持自然覓食，健康生存。</p></div></li>
+                <li><span>✓</span><div><strong>不跨越護欄</strong><p>港務作業與船隻動線有安全考量，取景也請留在公共步道內。</p></div></li>
+                <li><span>✓</span><div><strong>垃圾自行帶走</strong><p>不將垃圾丟入港水，一起維持水面與木棧的整潔。</p></div></li>
+                <li><span>✓</span><div><strong>遵守空域規範</strong><p>港區上空為管制空域，未經許可不操作空拍機。</p></div></li>
+                <li><span>✓</span><div><strong>愛護木棧設施</strong><p>金屬與木棧遇雨濕滑，行走放慢，也不刻劃設施。</p></div></li>
+                <li><span>✓</span><div><strong>尖峰時段互相禮讓</strong><p>把最好的觀景位置，留給每一位到訪的人。</p></div></li>
+              </ul>
+            </div>
+          </div>
+          <div class="learn-facts">
+            <h3>港口小知識：看懂眼前的這一幕</h3>
+            <div class="learn-facts-grid">
+              <article>
+                <span>潮汐</span>
+                <h4>水面高度其實一直在變</h4>
+                <p>基隆港的潮差不大，多數時候在 1 公尺上下，因此木棧平台與水面的距離變化並不劇烈；但大潮遇上強風時，岸邊浪花仍可能濺上步道，請與水邊保持距離。</p>
+              </article>
+              <article>
+                <span>船舶</span>
+                <h4>大船進港需要很多人幫忙</h4>
+                <p>大型郵輪與貨輪進港時，通常由拖船在船側頂推協助轉向，再由引水人引導靠泊。看見船隻緩慢橫移、久久不動，多半是正常的港務作業。</p>
+              </article>
+              <article>
+                <span>水色</span>
+                <h4>港水為什麼不是藍的</h4>
+                <p>港內水體交換較慢，加上船隻攪動、陸源泥沙與懸浮物，水色常呈綠褐或黃褐。這是商港水域的正常現象，不代表水質異常——但僅供觀賞，請勿下水或碰觸。</p>
+              </article>
+              <article>
+                <span>班表</span>
+                <h4>港區的一天怎麼安排</h4>
+                <p>貨櫃船、港勤拖船、巡防與引水船艇各有作業節奏，郵輪則依照港計畫進出。想看大型郵輪，建議出發前先查詢當日靠港資訊，避免撲空。</p>
+              </article>
+              <article>
+                <span>安全</span>
+                <h4>為什麼不能跨越護欄</h4>
+                <p>岸壁與港水之間落差大、沒有緩衝，一旦落水救援困難；護欄內側也是港務作業與人流的界線。想更靠近船隻，請用鏡頭而不是腳步。</p>
+              </article>
+              <article>
+                <span>地景</span>
+                <h4>為什麼基隆是「港市合一」</h4>
+                <p>港口緊貼市中心，鐵路、客運與街市都在步行範圍內。這種港與城幾乎沒有界線的格局，是基隆從清代口岸一路發展至今留下的城市形態。</p>
+              </article>
+            </div>
           </div>
         </div>
       </section>
@@ -417,6 +879,42 @@ const mapNavigationUrl =
             <details><summary>雨天值得去嗎？<span></span></summary><p>雨後木棧與城市燈光很有基隆特色，但地面可能濕滑、港邊風大，需準備雨具與防滑鞋。</p></details>
             <details><summary>海洋廣場有專屬停車場嗎？<span></span></summary><p>建議使用基隆車站、市中心或東岸周邊停車場，再步行前往。停車價格與營業狀態請以當日資訊為準。</p></details>
             <details><summary>海洋廣場和國門廣場一樣嗎？<span></span></summary><p>兩者相鄰但不是完全相同的空間。國門廣場較靠近車站，海洋廣場則更靠近港水與木棧觀景平台。</p></details>
+            <details><summary>什麼季節最適合造訪海洋廣場？<span></span></summary><p>各季各有特色：春夏適合看船與黃昏散步，秋冬雨港氛圍與夜景倒影最鮮明。出發前建議先查看本頁的即時天氣與未來一週趨勢。</p></details>
+            <details><summary>輪椅或嬰兒車可以進入海洋廣場嗎？<span></span></summary><p>廣場與木棧平台以平緩動線為主，部分路段設有坡道銜接，輪椅與嬰兒車大致可通行；實際無障礙動線依現場公告為準，建議結伴同行。</p></details>
+            <details><summary>基隆為什麼被稱為「雨港」？<span></span></summary><p>冬季東北季風挾帶水氣、受迎風地形抬升而降雨；夏季則以午後雷陣雨與颱風降雨為主，因此形成全年有雨、秋冬季更為明顯的氣候特色。</p></details>
+            <details><summary>在港邊盤旋的「老鷹」是什麼鳥？<span></span></summary><p>多半是黑鳶（俗稱老鷹）。港區食物來源穩定，讓黑鳶長期在港區上空盤旋覓食；觀察時請保持距離，不要餵食或丟擲食物。</p></details>
+            <details><summary>基隆海洋廣場是什麼時候出現的？<span></span></summary><p>海洋廣場原為小艇碼頭周邊的作業岸線，於 2010 年整理為向港面延伸的木棧觀景平台，讓旅客與市民能更貼近港水、船隻與山城天際線。</p></details>
+            <details><summary>基隆海洋廣場附近有停車場嗎？<span></span></summary><p>廣場本身沒有專屬停車場，周邊有車站周邊收費停車場、東岸一帶的地下停車場與路邊停車格等類型，步行約 5–10 分鐘；假日與連假車位緊張，建議優先搭乘火車或客運前往。</p></details>
+            <details><summary>從基隆海洋廣場走到基隆廟口夜市要多久？<span></span></summary><p>沿忠一路、仁三路步行約 5–8 分鐘（約 400 公尺）即可抵達，是結束港邊散步後最順路的用餐選擇。</p></details>
+            <details><summary>幾點來拍基隆海洋廣場夜景最好？<span></span></summary><p>建議日落前 30–45 分鐘抵達，先看金色光線下的港景，再等日落後 20–40 分鐘的藍調時刻；雨後夜晚的濕潤地面倒影最具雨港特色。</p></details>
+            <details><summary>在基隆海洋廣場可以看到郵輪嗎？<span></span></summary><p>大型郵輪須依照基隆港的靠港計畫進出，通常白天靠泊、午後或傍晚離港。想看大船，建議出發前先查詢當日郵輪船期。</p></details>
+            <details><summary>可以在港邊下水或釣魚嗎？<span></span></summary><p>港區屬商港水域，有船隻進出與港務作業，不開放戲水；能否垂釣請依現場公告與主管機關規範，並留意自身安全。</p></details>
+          </div>
+        </div>
+      </section>
+
+      <section class="section visitor-summary" id="visitor-summary" aria-labelledby="visitor-summary-title">
+        <div class="shell">
+          <div class="section-heading centered-heading">
+            <p class="kicker">VISITOR SUMMARY</p>
+            <h2 id="visitor-summary-title">給郵輪旅客與海外訪客的重點摘要</h2>
+            <p>搭乘郵輪或從海外前來的旅客，可以先看這段重點，再回到上方各段查看細節。</p>
+          </div>
+          <div class="night-watching">
+            <article lang="en">
+              <span>English</span>
+              <h3>Keelung Maritime Plaza at a glance</h3>
+              <p>
+                Keelung Maritime Plaza is a free, open waterfront viewing deck on Keelung Harbour, a 3–5 minute walk from Keelung Station. It is open around the clock and no ticket is required. Arrive 30–45 minutes before sunset to watch the harbour lights come on, and bring a light raincoat — Keelung is one of the rainiest cities in Taiwan.
+              </p>
+            </article>
+            <article lang="ja">
+              <span>日本語</span>
+              <h3>基隆海洋広場のポイント</h3>
+              <p>
+                基隆海洋広場は基隆港に面した無料開放の展望広場で、基隆駅から徒歩約 3〜5 分。24 時間開放・入場無料で、夕暮れの 30〜45 分前に到着すると港の灯りがともる様子まで楽しめます。雨の多い港町なので、軽いレインコートがあると安心です。
+              </p>
+            </article>
           </div>
         </div>
       </section>
@@ -447,13 +945,24 @@ const mapNavigationUrl =
         <div class="footer-links">
           <h3>站內導覽</h3>
           <a href={mapNavigationUrl} target="_blank" rel="noopener noreferrer">地圖導航 ↗</a>
+          <a href={mapsShareUrl} target="_blank" rel="noopener noreferrer">Google 地圖景點評價 ↗</a>
+          <a href="#heritage">港城故事</a>
+          <a href="#night-view">夜景攝影</a>
+          <a href="#parking">停車交通</a>
+          <a href="#quarterly">季度策略</a>
           <a href="#routes">遊覽路線</a>
+          <a href="#services">周邊設施</a>
           <a href="#faq">常見問題</a>
           <a href="/privacy/">隱私權說明</a>
         </div>
         <div class="footer-sources">
-          <h3>資料說明</h3>
+          <h3>資料來源</h3>
           <p>開放狀態、交通、活動、施工與船期可能調整，出發前請以主管機關及現場最新公告為準。</p>
+          <p class="source-note"><strong>評分與評價 · 同步時間 2026 年 9 月：</strong>同步自 Google 地圖用戶評價；評分與評價內容版權歸原作者與 Google 地圖所有。<a href={mapsShareUrl} target="_blank" rel="noopener noreferrer">在谷歌地圖查看全部評價 ↗</a></p>
+          <p class="source-note"><strong>官方旅遊資訊：</strong><a href={govTourismUrl} target="_blank" rel="noopener noreferrer">基隆市文化觀光局（klctb.klcg.gov.tw）↗</a></p>
+          <p class="source-note"><strong>天氣與氣候：</strong>即時天氣與未來一週預報由本站在伺服器端取得並快取後顯示，僅供行程參考；實際天況、海上與陸上警特報請以<a href={cwaUrl} target="_blank" rel="noopener noreferrer">交通部中央氣象署（cwa.gov.tw）↗</a>發布為準。季度策略表參考中央氣象署 1991–2020 年長期氣候平均與港區長期觀察整理，非即時監測值。</p>
+          <p class="source-note"><strong>歷史與生態內容：</strong>港口沿革、地名由來與地方傳說依公開史料、官方出版品與地方口傳整理；傳說與俗諺版本眾多，僅供延伸閱讀，若有出入以主管機關與正式出版品為準。</p>
+          <p class="source-note"><strong>官方與參考來源：</strong><a href={govTourismUrl} target="_blank" rel="noopener noreferrer">基隆市文化觀光局 ↗</a>・<a href="https://www.klcg.gov.tw/" target="_blank" rel="noopener noreferrer">基隆市政府 ↗</a>・<a href="https://www.taiwan.net.tw/" target="_blank" rel="noopener noreferrer">交通部觀光署 ↗</a>・<a href={cwaUrl} target="_blank" rel="noopener noreferrer">交通部中央氣象署 ↗</a>・<a href="https://www.twport.com.tw/" target="_blank" rel="noopener noreferrer">臺灣港務公司 ↗</a></p>
         </div>
       </div>
 
@@ -670,6 +1179,13 @@ const mapNavigationUrl =
       const updateHeader = () => header.classList.toggle('is-scrolled', window.scrollY > 20);
       updateHeader();
       window.addEventListener('scroll', updateHeader, { passive: true });
+    </script>
+    <script is:inline>
+      if ('serviceWorker' in navigator) {
+        window.addEventListener('load', () => {
+          navigator.serviceWorker.register('/sw.js').catch(() => {});
+        });
+      }
     </script>
   </body>
 </html>

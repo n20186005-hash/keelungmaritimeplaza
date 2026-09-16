@@ -1,0 +1,141 @@
+---
+import {
+  WEATHER_ICON_PATHS,
+  comfortAdvice,
+  describeDayLabel,
+  describeMonthDay,
+  describeWeatherCode,
+  formatClock,
+  getWeatherSnapshot,
+  umbrellaAdvice,
+  type IconKind,
+} from "../lib/weather";
+
+const weather = await getWeatherSnapshot();
+
+const current = weather?.current ?? null;
+const currentInfo = current
+  ? describeWeatherCode(current.weatherCode)
+  : ({ label: "資料待更新", kind: "cloud" as IconKind });
+const today = weather?.daily?.[0] ?? null;
+const todayRain = today?.precipitationProbability ?? null;
+
+const advice = current
+  ? umbrellaAdvice(current.weatherCode, todayRain, current.windSpeed, current.windGust)
+  : null;
+const comfort = current
+  ? comfortAdvice(current.apparentTemperature, current.humidity, current.windSpeed)
+  : null;
+
+const days = (weather?.daily ?? []).map((day, index) => ({
+  ...day,
+  info: describeWeatherCode(day.weatherCode),
+  label: describeDayLabel(day.date, index),
+  monthDay: describeMonthDay(day.date),
+}));
+
+const sunrise = formatClock(today?.sunrise ?? null);
+const sunset = formatClock(today?.sunset ?? null);
+
+const iconPaths = (kind: IconKind): string =>
+  WEATHER_ICON_PATHS[kind].map((d) => `<path d="${d}"/>`).join("");
+
+const updatedLabel = weather ? weather.fetchedAt : "—";
+---
+
+<section class="section weather-section" aria-labelledby="weather-title">
+  <div class="shell">
+    <div class="section-heading centered-heading">
+      <p class="kicker">即時天氣</p>
+      <h2 id="weather-title">現在的基隆港邊，天氣如何？</h2>
+      <p>出發前先看港邊的即時天氣與未來一週趨勢，決定要不要帶傘、穿什麼、幾點來看夕陽。</p>
+    </div>
+
+    <div class="weather-card">
+      <div class="weather-now">
+        <svg viewBox="0 0 24 24" role="img" aria-label={`天氣狀況：${currentInfo.label}`} set:html={iconPaths(currentInfo.kind)} />
+        <strong>{current ? `${current.temperature}°C` : "—"}</strong>
+        <span class="weather-now-label">{currentInfo.label}</span>
+        <ul class="weather-now-meta">
+          <li><span>體感</span><b>{current ? `${current.apparentTemperature}°C` : "—"}</b></li>
+          <li><span>相對濕度</span><b>{current ? `${current.humidity}%` : "—"}</b></li>
+          <li><span>平均風速</span><b>{current ? `${current.windSpeed} km/h` : "—"}</b></li>
+          <li><span>陣風</span><b>{current ? `${current.windGust} km/h` : "—"}</b></li>
+          <li><span>今日降雨機率</span><b>{todayRain !== null ? `${todayRain}%` : "—"}</b></li>
+        </ul>
+      </div>
+
+      <div class="weather-body">
+        {
+          advice && comfort ? (
+            <div class="weather-briefs">
+              <div class={`weather-advice tone-${advice.tone}`}>
+                <span class="weather-brief-label">要不要帶傘</span>
+                <h3>{advice.title}</h3>
+                <p>{advice.detail}</p>
+              </div>
+              <div class="weather-advice weather-comfort">
+                <span class="weather-brief-label">穿著與體感</span>
+                <h3>{comfort.title}</h3>
+                <p>{comfort.detail}</p>
+              </div>
+            </div>
+          ) : (
+            <div class="weather-advice">
+              <span class="weather-brief-label">出門提醒</span>
+              <h3>出發前再確認一次天氣</h3>
+              <p>目前無法取得即時觀測資料，建議出發前參考交通部中央氣象署的基隆地區最新預報與降雨機率。</p>
+            </div>
+          )
+        }
+
+        <div class="weather-days-scroll">
+          {
+            days.length > 0 ? (
+              <div class="weather-days">
+                {days.map((day) => (
+                  <div class="weather-day">
+                    <span class="day-name">{day.label}</span>
+                    <small class="day-date">{day.monthDay}</small>
+                    <svg
+                      viewBox="0 0 24 24"
+                      role="img"
+                      aria-label={`天氣狀況：${day.info.label}`}
+                      set:html={iconPaths(day.info.kind)}
+                    />
+                    <span class="day-condition">{day.info.label}</span>
+                    <strong>{day.maxTemperature}°</strong>
+                    <small>{day.minTemperature}°</small>
+                    <span class="day-rain">
+                      <svg viewBox="0 0 24 24" aria-hidden="true">
+                        <path d="M12 3s6 6.5 6 10.5a6 6 0 1 1-12 0C6 9.5 12 3 12 3Z" />
+                      </svg>
+                      <b>{day.precipitationProbability !== null ? `${day.precipitationProbability}%` : "—"}</b>
+                    </span>
+                    {day.windGustMax !== null && <span class="day-wind">陣風 {day.windGustMax} km/h</span>}
+                  </div>
+                ))}
+              </div>
+            ) : (
+              <p class="weather-pending">天氣預報暫時無法取得，請稍後重新整理頁面，或直接參考中央氣象署發布的基隆地區預報。</p>
+            )
+          }
+        </div>
+
+        {
+          sunrise || sunset ? (
+            <ul class="weather-sun">
+              {sunrise && <li><span>日出</span><b>{sunrise}</b></li>}
+              {sunset && <li><span>日落</span><b>{sunset}</b></li>}
+              <li><span>最佳時段</span><b>{sunset ? `日落前 30–45 分鐘抵達` : "白天時段"}</b></li>
+            </ul>
+          ) : null
+        }
+
+        <p class="weather-footnote">
+          天氣預報僅供參考，實際天況與海上警報請以交通部中央氣象署發布為準 · 港區資料更新時間 <span>{updatedLabel}</span>
+        </p>
+      </div>
+    </div>
+  </div>
+</section>

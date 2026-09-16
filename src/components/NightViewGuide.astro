@@ -1,0 +1,120 @@
+---
+const shootingTips = [
+  {
+    label: "藍調時刻",
+    title: "日落後 20–40 分鐘最有層次",
+    text: "天空還沒全黑、港區與城市燈光已經亮起，是天空與燈光曝光最接近的黃金 20 分鐘。建議日落前 30–45 分鐘抵達，先卡位再等天色轉暗。",
+  },
+  {
+    label: "燈光與倒影",
+    title: "雨後的濕潤地面最好拍",
+    text: "廣場燈光、地標字樣與對岸港區燈火會映在濕潤的木棧與地面上，是「雨港」最鮮明的畫面。雨後請放慢腳步，注意防滑。",
+  },
+  {
+    label: "拍攝設定",
+    title: "手機與相機都拍得到",
+    text: "手機可善用夜景模式並靠著欄杆穩定；相機建議小光圈搭配慢快門，使用輕便腳架或穩固的欄杆支撐，並關閉閃光燈。",
+  },
+];
+
+const timeline = [
+  {
+    time: "日落前 30–45 分鐘",
+    light: "金色光線，天空有層次",
+    subject: "廣場全景、山城輪廓與船隻",
+    note: "先抵達卡位，順便確認風勢與雲層",
+  },
+  {
+    time: "日落後 20–40 分鐘",
+    light: "藍調時刻，天空與燈光亮度接近",
+    subject: "港區燈光、天空漸層與地標字樣",
+    note: "色溫最好看，但只有約 20–30 分鐘",
+  },
+  {
+    time: "入夜後",
+    light: "全黑背景，人工光源為主",
+    subject: "燈光倒影、船影與長曝畫面",
+    note: "港邊風大，注意相機穩定與保暖",
+  },
+  {
+    time: "雨後夜晚",
+    light: "潮濕地面反射燈光",
+    subject: "倒影、霓虹與濕潤木棧質感",
+    note: "木棧濕滑，鏡頭注意水氣與擦拭",
+  },
+];
+
+const watching = [
+  {
+    label: "郵輪",
+    title: "先查船期，再決定時間",
+    text: "大型郵輪依照靠港計畫進出，通常白天靠泊、午後或傍晚離港。想拍攝大船進出，建議出發前先查詢當日基隆港的郵輪船期，避免撲空。",
+  },
+  {
+    label: "黑鳶",
+    title: "白天抬頭看，就有機會",
+    text: "黑鳶（老鷹）常在港區上空盤旋覓食，白天比夜間容易觀察。請用望遠鏡或長鏡頭，不餵食、不丟擲食物，也不使用空拍機干擾。",
+  },
+];
+---
+
+<section class="section night-section" id="night-view" aria-labelledby="night-title">
+  <div class="shell">
+    <div class="section-heading centered-heading">
+      <p class="kicker">夜景與攝影</p>
+      <h2 id="night-title">幾點來，基隆港最好看？</h2>
+      <p>港灣夜景是海洋廣場最被搜尋的關鍵體驗。掌握光線變化的節奏，不必昂貴器材，手機也能拍出雨港的層次。</p>
+    </div>
+
+    <div class="audience-grid">
+      {
+        shootingTips.map((item) => (
+          <article class="audience-card">
+            <span>{item.label}</span>
+            <h3>{item.title}</h3>
+            <p class="audience-card-text">{item.text}</p>
+          </article>
+        ))
+      }
+    </div>
+
+    <div class="seasons-table-wrap night-table-wrap">
+      <table class="seasons-table">
+        <thead>
+          <tr>
+            <th scope="col">時段</th>
+            <th scope="col">光線狀態</th>
+            <th scope="col">適合拍什麼</th>
+            <th scope="col">提醒</th>
+          </tr>
+        </thead>
+        <tbody>
+          {
+            timeline.map((row) => (
+              <tr>
+                <th scope="row">{row.time}</th>
+                <td>{row.light}</td>
+                <td>{row.subject}</td>
+                <td>{row.note}</td>
+              </tr>
+            ))
+          }
+        </tbody>
+      </table>
+    </div>
+
+    <div class="night-watching">
+      {
+        watching.map((item) => (
+          <article>
+            <span>{item.label}</span>
+            <h3>{item.title}</h3>
+            <p>{item.text}</p>
+          </article>
+        ))
+      }
+    </div>
+
+    <p class="seasons-note">日落時間與天色變化隨季節調整，出發前可參考本頁即時天氣的日出／日落資訊；港區作業與船期以現場公告為準，拍攝時請全程留在護欄內側。</p>
+  </div>
+</section>

@@ -1,5 +1,54 @@
+# ── 依賴套件 ──────────────────────────────────────────
 node_modules/
+# 舊版依賴備份，不進版本庫、不部署
+node_modules_old/
+.pnpm-store/
+
+# 自動產生的型別檔（wrangler types，體積大且每次產生內容不同）
+worker-configuration.d.ts
+
+# ── 建置輸出（部署時由 wrangler 上傳 dist）────────────
 dist/
 .astro/
+*.tsbuildinfo
+
+# ── Cloudflare / Wrangler 本地狀態 ────────────────────
 .wrangler/
+.dev.vars
+.dev.vars.*
+.mf/
+.wrangler/tmp/
+
+# ── 環境變數與本機設定 ────────────────────────────────
+.env
+.env.*
+*.local
+
+# ── 日誌 ──────────────────────────────────────────────
+*.log
+npm-debug.log*
+pnpm-debug.log*
+yarn-debug.log*
+wrangler.log
+
+# ── 暫存檔與備份 ──────────────────────────────────────
+_tmp_*
+tmp/
+temp/
+*.tmp
+*.bak
+*.orig
+*.swp
+*~
+
+# ── 作業系統與編輯器 ──────────────────────────────────
 .DS_Store
+Thumbs.db
+desktop.ini
+.idea/
+.vscode/*
+!.vscode/extensions.json
+
+# ── 測試與覆蓋率 ──────────────────────────────────────
+coverage/
+.nyc_output/
