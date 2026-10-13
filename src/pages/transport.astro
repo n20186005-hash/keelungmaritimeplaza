@@ -1,0 +1,222 @@
+---
+import SubpageLayout from "../components/SubpageLayout.astro";
+
+const mapNavigationUrl =
+  "https://www.google.com/maps/dir/?api=1&destination=25.1309627%2C121.7413639";
+
+const walkSteps = [
+  {
+    n: "01",
+    title: "基隆火車站南站出口",
+    text: "由南站出口出站，往港區與國門廣場方向前進；出口外即有明確的港區指標。",
+    time: "起點",
+  },
+  {
+    n: "02",
+    title: "國門廣場",
+    text: "穿越車站與港區之間的開放空間，順便確認車站、市區與港水的相對位置。",
+    time: "約 2 分",
+  },
+  {
+    n: "03",
+    title: "基隆海洋廣場木棧平台",
+    text: "接上延伸入港的木棧觀景平台，看船、吹海風、等待港灣亮燈。",
+    time: "抵達 · 約 3–5 分",
+  },
+];
+
+const modes = [
+  {
+    label: "台鐵",
+    title: "基隆車站南站出口，步行 3–5 分鐘",
+    text: "從台北、宜蘭方向搭火車最方便。出站後往港區與國門廣場方向前進，即可接上木棧平台，全程平緩不爬坡。",
+  },
+  {
+    label: "國道客運",
+    title: "基隆轉運站，步行 1–3 分鐘",
+    text: "從台北轉運站出發的國道客運多停靠於此，下車後依港區方向步行，是雨天也能快速抵達的選擇。",
+  },
+  {
+    label: "市區公車",
+    title: "至基隆車站周邊，再步行前往",
+    text: "多數路線以基隆火車站、忠一路一帶為樞紐，下車後步行到港邊約 5–8 分鐘；實際站牌與班次請依現場資訊。",
+  },
+  {
+    label: "計程車／網約車",
+    title: "定位「基隆海洋廣場」或忠一路 3-2 號",
+    text: "從車站搭車僅需短短一段路；若攜帶行李或同行有長輩孩童，可請司機停在最接近港區的路口再步行進入。",
+  },
+  {
+    label: "自行開車",
+    title: "停車場周邊再步行",
+    text: "廣場無專屬停車場，建議停在車站或東岸一帶收費停車場後步行；詳細選擇請參考停車場攻略。",
+  },
+];
+
+const faqs = [
+  {
+    q: "基隆火車站怎麼走到海洋廣場？",
+    a: "由基隆火車站南站出口出站，往港區與國門廣場方向前進，穿越開放空間後接上海洋廣場木棧平台，全程平緩、不爬坡。",
+  },
+  {
+    q: "從車站要走多久？",
+    a: "南站出口步行約 3–5 分鐘即達木棧平台；若從國道客運轉運站出發，約 1–3 分鐘。實際會受步行速度與攜帶行李影響。",
+  },
+  {
+    q: "客運在哪裡下車最近？",
+    a: "國道客運多停靠基隆轉運站，下車後往港區方向步行約 1–3 分鐘；若搭市區公車，則以基隆火車站周邊為樞紐，再步行約 5–8 分鐘。",
+  },
+  {
+    q: "有公車直達海洋廣場嗎？",
+    a: "廣場緊鄰車站與市中心，多數旅客步行即可抵達，不一定需要轉乘。若搭公車，可先到基隆車站周邊站牌，再步行進入港邊。",
+  },
+  {
+    q: "開車來要停哪裡？",
+    a: "廣場本身沒有專屬停車場，建議停在基隆南站停車場、東岸一帶或市中心路邊停車格後再步行；詳見停車場攻略。",
+  },
+  {
+    q: "晚上走到廣場安全嗎？",
+    a: "車站到港邊的主幹道與國門廣場夜間仍有照明與人流，一般步行無虞；但木棧平台臨港、風大，夜間請注意保暖、防滑並與護欄保持距離。",
+  },
+];
+
+const breadcrumb = JSON.stringify({
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  itemListElement: [
+    { "@type": "ListItem", position: 1, name: "台灣", item: "https://keelungmaritimeplaza.com/" },
+    { "@type": "ListItem", position: 2, name: "基隆市", item: "https://keelungmaritimeplaza.com/" },
+    { "@type": "ListItem", position: 3, name: "仁愛區", item: "https://keelungmaritimeplaza.com/" },
+    { "@type": "ListItem", position: 4, name: "基隆海洋廣場", item: "https://keelungmaritimeplaza.com/" },
+    { "@type": "ListItem", position: 5, name: "交通攻略", item: "https://keelungmaritimeplaza.com/transport/" },
+  ],
+});
+
+const faqLd = JSON.stringify({
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  mainEntity: faqs.map((f) => ({
+    "@type": "Question",
+    name: f.q,
+    acceptedAnswer: { "@type": "Answer", text: f.a },
+  })),
+});
+---
+
+<SubpageLayout
+  title="基隆火車站到海洋廣場｜步行路線、客運與大眾運輸"
+  description="從基隆火車站南站出口步行到海洋廣場約 3–5 分鐘。整理步行路線（車站→國門廣場→木棧平台）、客運轉運站、公車與計程車資訊，以及自駕停車的銜接方式。"
+  path="/transport/"
+  jsonLd={[breadcrumb, faqLd]}
+>
+  <section class="subhero">
+    <div class="shell">
+      <p class="kicker">交通攻略</p>
+      <h1>基隆火車站到海洋廣場<br />3–5 分鐘的港邊步行</h1>
+      <p class="subhero-lead">海洋廣場最大的優勢是離車站很近。由基隆火車站南站出口出站，往港區方向走，經過國門廣場就能接上木棧平台——不需要轉乘、不用爬坡，提著行李也能輕鬆抵達。</p>
+      <div class="subhero-actions">
+        <a class="button button-solid" href={mapNavigationUrl} target="_blank" rel="noopener noreferrer">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 21s7-6 7-12a7 7 0 1 0-14 0c0 6 7 12 7 12Z"/><circle cx="12" cy="9" r="2.4"/></svg>
+          開啟地圖導航
+        </a>
+        <a class="button button-ghost" href="/parking/">查看停車方式</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" aria-labelledby="route-title">
+    <div class="shell">
+      <div class="section-heading centered-heading">
+        <p class="kicker">最常用路線</p>
+        <h2 id="route-title">南站出口 → 國門廣場 → 木棧平台</h2>
+        <p>這段是絕大多數旅客的走法：出站後不繞遠路，沿港區方向直直走，約 3–5 分鐘就能站上木棧看港景。</p>
+      </div>
+      <ol class="sub-steps">
+        {
+          walkSteps.map((s) => (
+            <li>
+              <span>{s.n}</span>
+              <div>
+                <strong>{s.title}</strong>
+                <small>{s.text}</small>
+              </div>
+              <em>{s.time}</em>
+            </li>
+          ))
+        }
+      </ol>
+      <p class="seasons-note">步行時間為概估，會受步行速度、攜帶行李與天氣影響；若遇活動或施工，動線可能臨時調整，請以現場指引為準。</p>
+    </div>
+  </section>
+
+  <section class="section transport-section" aria-labelledby="modes-title">
+    <div class="shell">
+      <div class="section-heading centered-heading">
+        <p class="kicker">怎麼抵達？</p>
+        <h2 id="modes-title">各種交通方式的比較</h2>
+        <p>海洋廣場位於車站、轉運站與港水之間，多數交通方式都在步行 10 分鐘內。以下依「方式」整理，實際班次與費用請以現場公告為準。</p>
+      </div>
+      <div class="services-grid">
+        {
+          modes.map((m) => (
+            <article>
+              <div class="transport-icon">
+                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 17h16M6 17l2-10h8l2 10M9 11h6M8 21h.01M16 21h.01"/></svg>
+              </div>
+              <span>{m.label}</span>
+              <h3>{m.title}</h3>
+              <p>{m.text}</p>
+            </article>
+          ))
+        }
+      </div>
+      <p class="services-note">以上為交通方式概述，實際班次、費率與路線以台鐵、客運與市區公車主管機關公告為準；本站不推薦或代言任何特定運輸業者。</p>
+    </div>
+  </section>
+
+  <section class="section nearby-section" aria-labelledby="from-title">
+    <div class="shell">
+      <div class="section-heading">
+        <p class="kicker">從外縣市出發</p>
+        <h2 id="from-title">台北、宜蘭方向怎麼來</h2>
+        <p>基隆就在台北都會圈旁，無論台鐵或國道客運都能在短時間內抵達車站，再步行進港邊。以下為常見路線的概略時間，實際請依當日時刻表。</p>
+      </div>
+      <div class="audience-grid">
+        <article class="audience-card">
+          <span>台鐵</span>
+          <h3>台北站 → 基隆站</h3>
+          <p class="audience-card-text">區間車約 40–50 分鐘，班次密集、隨到隨搭；抵達基隆站後步行 3–5 分鐘即達廣場。</p>
+        </article>
+        <article class="audience-card">
+          <span>國道客運</span>
+          <h3>台北轉運站 → 基隆轉運站</h3>
+          <p class="audience-card-text">國道客運約 50–70 分鐘（視路況），下車後往港區步行 1–3 分鐘，適合不想算火車班次的旅客。</p>
+        </article>
+        <article class="audience-card">
+          <span>自駕</span>
+          <h3>國道一號 → 基隆端</h3>
+          <p class="audience-card-text">由國道一號往基隆方向，下交流道後接近市區與港區；停車請參考停車場攻略，再步行進港邊。</p>
+        </article>
+      </div>
+      <p class="seasons-note">時間為概略參考，會受班次、路況與連假疏運影響；出發前請以台鐵與客運官方時刻表為準。</p>
+    </div>
+  </section>
+
+  <section class="section faq-section" id="faq">
+    <div class="shell faq-layout">
+      <div class="section-heading sticky-heading">
+        <p class="kicker">常見問題</p>
+        <h2>出發前，快速確認</h2>
+        <p>以下整理前往海洋廣場最常遇到的交通問題，重點是「車站出站後往港區走」。班次與費率仍請以現場公告為準。</p>
+      </div>
+      <div class="faq-list">
+        {faqs.map((f) => (
+          <details>
+            <summary>{f.q}<span></span></summary>
+            <p>{f.a}</p>
+          </details>
+        ))}
+      </div>
+    </div>
+  </section>
+</SubpageLayout>

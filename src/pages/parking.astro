@@ -1,0 +1,220 @@
+---
+import SubpageLayout from "../components/SubpageLayout.astro";
+
+const mapNavigationUrl =
+  "https://www.google.com/maps/dir/?api=1&destination=25.1309627%2C121.7413639";
+
+const lots = [
+  {
+    name: "基隆南站停車場",
+    address: "基隆市仁愛區港西街 5 號",
+    for: "火車 / 客運抵達，就近停車",
+    text: "鄰近基隆火車站南站與城際轉運站，是開車前來時最直接的選擇。停妥後往港區方向步行，約 5–10 分鐘可抵達海洋廣場木棧平台。基隆市文化觀光局旅遊網曾於 2026 年 9 月更新此停車場相關資訊，可先做為核實起點。",
+  },
+  {
+    name: "東岸商場／東岸停車場",
+    address: "基隆市仁愛區（港區東側）",
+    for: "順遊東岸港區、用餐購物",
+    text: "位於基隆港東側，部分為地下停車場，與東岸廣場、商場連動。停妥後沿港區步道往西步行，約 8–12 分鐘到達海洋廣場，適合想把東岸與市中心串在一起的旅客。",
+  },
+  {
+    name: "市中心路邊停車格",
+    address: "忠一路、仁三路周邊",
+    for: "短暫停靠、接駁上下車",
+    text: "市中心街道設有收費停車格，位置最靠近廟口與廣場一側；但格位有限、施工與活動時常調整，建議僅作短暫停靠，長時間停車仍以停車場為主。",
+  },
+  {
+    name: "機車停車格",
+    address: "車站與市區周邊",
+    for: "在地與短程機車族",
+    text: "車站與市中心沿線設有機車停車格，步行到港邊通常 1–5 分鐘。請依現場標線與收費告示停放，避免占用汽車格或消防通道。",
+  },
+];
+
+const faqs = [
+  {
+    q: "基隆海洋廣場有專屬停車場嗎？",
+    a: "沒有。海洋廣場本身是開放的觀景空間，未設專屬停車場；最近的停車選擇集中在基隆火車站、東岸一帶與市中心路邊停車格，步行約 5–10 分鐘。",
+  },
+  {
+    q: "最近的停車場是哪裡？",
+    a: "一般是基隆南站停車場（基隆市仁愛區港西街 5 號），鄰近火車站南站與城際轉運站，停妥後往港區步行約 5–10 分鐘即達。",
+  },
+  {
+    q: "停車費大概多少？",
+    a: "費率會依時段、車種與營運單位而異，且可能調整。本站不提供即時費率或剩餘車位，請以現場收費看板、停車場官方資訊或基隆市文化觀光局旅遊網的最新公告為準。",
+  },
+  {
+    q: "假日或連假好停車嗎？",
+    a: "平日尚稱便利，但週末、連假與活動期間車位緊張，路邊格位更早滿位。建議優先搭乘台鐵或國道客運抵達，減少找車位的時間。",
+  },
+  {
+    q: "可以臨時下車或讓長輩下車嗎？",
+    a: "車站與市中心一側較容易臨時停靠與上下車；若同行有長輩、孩童或行動不便者，可先在南站或東岸周邊短暫停靠再步行前往，廣場本身為平坦的木棧動線。",
+  },
+  {
+    q: "開車來的話，停好後怎麼走到廣場？",
+    a: "由停車場往港區與國門廣場方向前進，穿越開放空間後接上海洋廣場木棧平台，全程以平緩步道為主，不需要爬坡。",
+  },
+];
+
+const breadcrumb = JSON.stringify({
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  itemListElement: [
+    { "@type": "ListItem", position: 1, name: "台灣", item: "https://keelungmaritimeplaza.com/" },
+    { "@type": "ListItem", position: 2, name: "基隆市", item: "https://keelungmaritimeplaza.com/" },
+    { "@type": "ListItem", position: 3, name: "仁愛區", item: "https://keelungmaritimeplaza.com/" },
+    { "@type": "ListItem", position: 4, name: "基隆海洋廣場", item: "https://keelungmaritimeplaza.com/" },
+    { "@type": "ListItem", position: 5, name: "停車場攻略", item: "https://keelungmaritimeplaza.com/parking/" },
+  ],
+});
+
+const faqLd = JSON.stringify({
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  mainEntity: faqs.map((f) => ({
+    "@type": "Question",
+    name: f.q,
+    acceptedAnswer: { "@type": "Answer", text: f.a },
+  })),
+});
+---
+
+<SubpageLayout
+  title="基隆海洋廣場停車場｜附近停車場、收費與步行路線"
+  description="基隆海洋廣場沒有專屬停車場。整理了鄰近的基隆南站停車場、東岸停車場與路邊停車格，含導航地址、車種與步行到港邊的時間，出發前快速掌握停車資訊。"
+  path="/parking/"
+  jsonLd={[breadcrumb, faqLd]}
+>
+  <section class="subhero">
+    <div class="shell">
+      <p class="kicker">停車場攻略</p>
+      <h1>基隆海洋廣場停車場<br />停哪裡、怎麼走最近</h1>
+      <p class="subhero-lead">海洋廣場本身是開放的觀景空間，沒有專屬停車場。最近的車位集中在基隆火車站、東岸一帶與市中心路邊，多數停妥後步行 5–10 分鐘就能走到港邊木棧平台。</p>
+      <div class="subhero-actions">
+        <a class="button button-solid" href={mapNavigationUrl} target="_blank" rel="noopener noreferrer">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 21s7-6 7-12a7 7 0 1 0-14 0c0 6 7 12 7 12Z"/><circle cx="12" cy="9" r="2.4"/></svg>
+          開啟地圖導航
+        </a>
+        <a class="button button-ghost" href="/transport/">查看交通方式</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" aria-labelledby="overview-title">
+    <div class="shell split-intro">
+      <div class="section-heading sticky-heading">
+        <p class="kicker">先知道</p>
+        <h2 id="overview-title">停車的基本盤</h2>
+        <p>基隆海洋廣場位於車站、轉運站與港水之間，優勢是「下車點離港邊很近」，挑戰是「廣場本身沒有車位」。</p>
+        <p>因此最順的走法通常是：把車停在車站或東岸周邊的收費停車場，再步行抵達；假日常一位難求，這時改搭大眾運輸反而更省時。</p>
+      </div>
+      <div class="tip-list">
+        <article class="tip-card">
+          <span class="tip-number">01</span>
+          <div><h3>無專屬車位</h3><p>廣場為開放空間，未設停車場；停車需求請由周邊收費停車場與路邊格位解決。</p></div>
+        </article>
+        <article class="tip-card">
+          <span class="tip-number">02</span>
+          <div><h3>走路只要幾分鐘</h3><p>從南站或東岸一帶停車場步行到木棧平台，多數在 5–10 分鐘內，動線平緩不爬坡。</p></div>
+        </article>
+        <article class="tip-card">
+          <span class="tip-number">03</span>
+          <div><h3>假日請早或搭車</h3><p>週末、連假與活動期間車位緊張，優先考慮台鐵或國道客運直達，減少找車位的時間。</p></div>
+        </article>
+        <article class="tip-card">
+          <span class="tip-number">04</span>
+          <div><h3>費率以現場為準</h3><p>費率、營業時間與剩餘車位會變動，出發前請以現場看板與官方公告為準，本站不提供即時費率。</p></div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="section parking-section" aria-labelledby="lots-title">
+    <div class="shell">
+      <div class="section-heading centered-heading">
+        <p class="kicker">主要停車選擇</p>
+        <h2 id="lots-title">鄰近的停車場類型</h2>
+        <p>以下依「停放位置」整理常見選擇。各停車場的費率、營業時間與車位狀態以現場與主管機關最新公告為準，請勿以本頁資訊作為當下收費依據。</p>
+      </div>
+      <div class="services-grid">
+        {
+          lots.map((lot) => (
+            <article>
+              <div class="transport-icon">
+                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 10h16v10H4z"/><path d="M7 10V7h10v3M9 20v-4h6v4M8 14h.01M16 14h.01"/></svg>
+              </div>
+              <span>{lot.for}</span>
+              <h3>{lot.name}</h3>
+              <p class="lot-address">{lot.address}</p>
+              <p>{lot.text}</p>
+            </article>
+          ))
+        }
+      </div>
+      <p class="services-note">以上為停車類型概述，實際收費、開放與車位狀況請以現場公告為準；本站不推薦或代言任何特定停車業者。</p>
+    </div>
+  </section>
+
+  <section class="section" aria-labelledby="nav-title">
+    <div class="shell">
+      <div class="section-heading centered-heading">
+        <p class="kicker">導航設定</p>
+        <h2 id="nav-title">直接把座標貼進地圖</h2>
+        <p>前往停車場時，建議先以「基隆南站停車場」或下方座標搜尋；停妥後再步行前往海洋廣場。</p>
+      </div>
+      <div class="parking-nav">
+        <div>
+          <p class="kicker">目的地資訊</p>
+          <h3>基隆市仁愛區忠一路 3-2 號</h3>
+          <ul>
+            <li><b>廣場地址</b>基隆市仁愛區忠一路 3-2 號</li>
+            <li><b>座標</b>25.1309627, 121.7413639</li>
+            <li><b>Plus Code</b>4PJR+9G 基隆市仁愛區</li>
+            <li><b>最近停車</b>基隆南站停車場（港西街 5 號）</li>
+          </ul>
+          <p class="parking-nav-note">若使用導航軟體，搜尋「基隆海洋廣場」或上述座標最準；前往停車場時請先確認該停車場的營業時間與步行動線。</p>
+        </div>
+        <a class="button button-solid button-large" href={mapNavigationUrl} target="_blank" rel="noopener noreferrer">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 21s7-6 7-12a7 7 0 1 0-14 0c0 6 7 12 7 12Z"/><circle cx="12" cy="9" r="2.4"/></svg>
+          開啟 Google 地圖導航
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <section class="section nearby-section" aria-labelledby="walk-title">
+    <div class="shell">
+      <div class="section-heading">
+        <p class="kicker">停妥之後</p>
+        <h2 id="walk-title">從停車場走到港邊</h2>
+        <p>無論停在南站或東岸一帶，最後一段都是「往港區、過國門廣場、接木棧平台」的平緩動線，不需要爬坡，也適合推嬰兒車或陪同長輩。</p>
+      </div>
+      <ol class="sub-steps">
+        <li><span>01</span><div><strong>停好車，走向港區方向</strong><small>由南站或東岸停車場出發，朝基隆港與國門廣場前進</small></div><em>起點</em></li>
+        <li><span>02</span><div><strong>穿越國門廣場</strong><small>車站、市區與港區之間的開放空間，也是確認方向的好位置</small></div><em>約 2–5 分</em></li>
+        <li><span>03</span><div><strong>走上海洋廣場木棧平台</strong><small>看港景、拍照，沿水邊短暫散步，全程約 5–10 分鐘</small></div><em>抵達</em></li>
+      </ol>
+      <p class="seasons-note">步行時間為概估，會受路況、天氣與攜帶行李影響；若遇活動或施工，動線可能臨時調整，請以現場指引為準。</p>
+    </div>
+  </section>
+
+  <section class="section faq-section" id="faq">
+    <div class="shell faq-layout">
+      <div class="section-heading sticky-heading">
+        <p class="kicker">常見問題</p>
+        <h2>停車前，快速確認</h2>
+        <p>以下整理開車前來最常遇到的問題。費率與車位會變動，實際仍請以現場與官方公告為準。</p>
+      </div>
+      <div class="faq-list">
+        {faqs.map((f) => (
+          <details>
+            <summary>{f.q}<span></span></summary>
+            <p>{f.a}</p>
+          </details>
+        ))}
+      </div>
+    </div>
+  </section>
+</SubpageLayout>

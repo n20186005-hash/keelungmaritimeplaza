@@ -1,0 +1,294 @@
+---
+import SubpageLayout from "../components/SubpageLayout.astro";
+
+const mapNavigationUrl =
+  "https://www.google.com/maps/dir/?api=1&destination=25.1309627%2C121.7413639";
+
+const compare = [
+  {
+    label: "白天",
+    title: "看船與辨認城市輪廓",
+    text: "光線充足，能清楚看見港區建築、船隻與沿山而建的城市。適合第一次辨認方向、拍照色彩也最真實。",
+  },
+  {
+    label: "黃昏",
+    title: "一次涵蓋兩種表情",
+    text: "建議日落前 30–45 分鐘抵達，先拍金色光線下的港景，再等天色轉暗，是最好安排也最完整的時段。",
+  },
+  {
+    label: "夜晚",
+    title: "燈光、倒影與雨港",
+    text: "入夜後港區與城市燈火成為主角，濕潤地面會映出倒影；雨後的基隆最有辨識度，但也記得防滑與防風。",
+  },
+];
+
+const spots = [
+  {
+    title: "木棧觀景平台",
+    text: "最靠近水面的第一排位置，視野最開闊，適合拍攝港景與對岸燈火。建議靠欄杆內側穩定手持或支撐。",
+  },
+  {
+    title: "廣場地標字樣旁",
+    text: "「海洋廣場」字樣與港景同框，是帶有地標識別度的取景點，適合作為旅程紀念照。",
+  },
+  {
+    title: "雨後濕潤木棧與地面",
+    text: "雨停後的濕潤表面會映出燈光與城市輪廓，是「雨港」最具基隆味的畫面；拍攝時請注意腳下防滑。",
+  },
+  {
+    title: "由東岸回望港邊",
+    text: "若時間允許，從東岸一帶回望海洋廣場與市中心，能拍到更寬幅的港灣夜景層次。",
+  },
+];
+
+const timeline = [
+  {
+    time: "日落前 30–45 分鐘",
+    light: "金色光線，天空有層次",
+    subject: "廣場全景、山城輪廓與船隻",
+    note: "先抵達卡位，順便確認風勢與雲層",
+  },
+  {
+    time: "日落後 20–40 分鐘",
+    light: "藍調時刻，天空與燈光亮度接近",
+    subject: "港區燈光、天空漸層與地標字樣",
+    note: "色溫最好看，但只有約 20–30 分鐘",
+  },
+  {
+    time: "入夜後",
+    light: "全黑背景，人工光源為主",
+    subject: "燈光倒影、船影與長曝畫面",
+    note: "港邊風大，注意相機穩定與保暖",
+  },
+  {
+    time: "雨後夜晚",
+    light: "潮濕地面反射燈光",
+    subject: "倒影、霓虹與濕潤木棧質感",
+    note: "木棧濕滑，鏡頭注意水氣與擦拭",
+  },
+];
+
+const faqs = [
+  {
+    q: "幾點來看基隆海洋廣場夜景最好？",
+    a: "建議日落前 30–45 分鐘抵達，先看金色光線下的港景，再等日落後 20–40 分鐘的藍調時刻；雨後夜晚的濕潤地面倒影最具雨港特色。實際日落時間隨季節變化，出發前可參考本頁即時天氣的日落資訊。",
+  },
+  {
+    q: "看夜景一定要帶腳架嗎？",
+    a: "不一定。手機的夜景模式靠著欄杆穩定就能拍；相機則建議小光圈搭配慢快門，使用輕便腳架或穩固的欄杆支撐，並關閉閃光燈，避免干擾其他旅客與船隻。",
+  },
+  {
+    q: "雨天還能看到夜景嗎？",
+    a: "可以。雨天反而常有更柔和的灰藍色調與燈光倒影，是基隆很具代表性的畫面。但木棧可能濕滑、港邊風勢放大，請穿防滑鞋、注意保暖並與護欄保持距離。",
+  },
+  {
+    q: "晚上走回車站方便嗎？",
+    a: "車站到港邊的主幹道與國門廣場夜間仍有照明與人流，一般步行無虞；廣場本身臨港、風大，夜間請注意保暖防滑，並留在公共步道內。",
+  },
+  {
+    q: "可以在港邊飛空拍機拍夜景嗎？",
+    a: "不建議。基隆港區上空為管制空域，未經許可請勿操作空拍機；想拍高空視角，請用鏡頭與腳步，而不是飛行器。",
+  },
+  {
+    q: "適合帶小孩或長輩看夜景嗎？",
+    a: "適合。廣場與木棧以平緩動線為主，車站到港邊距離短；夜間請注意防風保暖、地面濕滑與護欄安全，並預留回程的體力與交通時間。",
+  },
+];
+
+const breadcrumb = JSON.stringify({
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  itemListElement: [
+    { "@type": "ListItem", position: 1, name: "台灣", item: "https://keelungmaritimeplaza.com/" },
+    { "@type": "ListItem", position: 2, name: "基隆市", item: "https://keelungmaritimeplaza.com/" },
+    { "@type": "ListItem", position: 3, name: "仁愛區", item: "https://keelungmaritimeplaza.com/" },
+    { "@type": "ListItem", position: 4, name: "基隆海洋廣場", item: "https://keelungmaritimeplaza.com/" },
+    { "@type": "ListItem", position: 5, name: "夜景攻略", item: "https://keelungmaritimeplaza.com/night-view/" },
+  ],
+});
+
+const faqLd = JSON.stringify({
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  mainEntity: faqs.map((f) => ({
+    "@type": "Question",
+    name: f.q,
+    acceptedAnswer: { "@type": "Answer", text: f.a },
+  })),
+});
+---
+
+<SubpageLayout
+  title="基隆海洋廣場夜景｜拍攝位置、藍調時刻與雨後倒影"
+  description="基隆海洋廣場是免費看港景夜景的地點。整理白天與夜間對比、最佳拍攝位置、藍調時刻時間、雨後倒影，以及夜間步行與港邊安全提醒。"
+  path="/night-view/"
+  jsonLd={[breadcrumb, faqLd]}
+>
+  <section class="subhero">
+    <div class="shell">
+      <p class="kicker">夜景攻略</p>
+      <h1>基隆海洋廣場夜景<br />從藍調時刻拍到雨後倒影</h1>
+      <p class="subhero-lead">海洋廣場免費、24 小時開放，木棧平台第一排就是港景。入夜後港區與城市燈火亮起，雨後的濕潤地面還會映出倒影——這裡是基隆最容易被低估的夜景點之一。</p>
+      <div class="subhero-actions">
+        <a class="button button-solid" href={mapNavigationUrl} target="_blank" rel="noopener noreferrer">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 21s7-6 7-12a7 7 0 1 0-14 0c0 6 7 12 7 12Z"/><circle cx="12" cy="9" r="2.4"/></svg>
+          開啟地圖導航
+        </a>
+        <a class="button button-ghost" href="/#weather">查看即時天氣</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="section night-section" aria-labelledby="why-title">
+    <div class="shell">
+      <div class="section-heading centered-heading">
+        <p class="kicker">為什麼這裡適合看夜景</p>
+        <h2 id="why-title">免費、24 小時、第一排港景</h2>
+        <p>海洋廣場是開放式公共空間，不需要門票，也不受一般營業時間限制。木棧平台往港面延伸，視野沒有圍牆遮擋，黃昏到入夜之間能連續看到港景的表情變化。</p>
+      </div>
+      <div class="experience-grid">
+        <article class="experience-card experience-large">
+          <img src="/images/photo-night.webp" width="1200" height="900" loading="lazy" alt="基隆海洋廣場夜間燈光與水面倒影" />
+          <div class="image-overlay"></div>
+          <div class="experience-copy">
+            <span>夜晚</span>
+            <h3>港區燈火成為主角</h3>
+            <p>入夜後，燈光與濕潤水面構成基隆最鮮明的城市畫面。</p>
+          </div>
+        </article>
+        <article class="experience-card">
+          <img src="/images/photo-panorama.webp" width="1200" height="900" loading="lazy" alt="從海洋廣場望向基隆港的寬幅夜景" />
+          <div class="image-overlay"></div>
+          <div class="experience-copy">
+            <span>黃昏</span>
+            <h3>藍調時刻最迷人</h3>
+            <p>天色將暗未暗，天空與燈光亮度最接近。</p>
+          </div>
+        </article>
+        <article class="experience-card">
+          <img src="/images/photo-rain.webp" width="1200" height="900" loading="lazy" alt="雨天的基隆海洋廣場與濕潤木棧平台" />
+          <div class="image-overlay"></div>
+          <div class="experience-copy">
+            <span>雨後</span>
+            <h3>倒影最有雨港味</h3>
+            <p>雨停後的地面映出燈光，是基隆獨有的氣氛。</p>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" aria-labelledby="compare-title">
+    <div class="shell">
+      <div class="section-heading centered-heading">
+        <p class="kicker">白天與夜間</p>
+        <h2 id="compare-title">同一座廣場，兩種表情</h2>
+        <p>不用等到天黑。白天看船與辨認城市輪廓，黃昏收穫藍調時刻，夜晚則是燈光與倒影——一次到訪就能收集不同畫面。</p>
+      </div>
+      <div class="audience-grid">
+        {
+          compare.map((c) => (
+            <article class="audience-card">
+              <span>{c.label}</span>
+              <h3>{c.title}</h3>
+              <p class="audience-card-text">{c.text}</p>
+            </article>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <section class="section nearby-section" aria-labelledby="spots-title">
+    <div class="shell">
+      <div class="section-heading">
+        <p class="kicker">拍攝位置</p>
+        <h2 id="spots-title">去哪裡拍最好</h2>
+        <p>不需要複雜設備，重點是選對位置與時間。以下是廣場與周邊較好取景的幾個點位，請全程留在公共步道與欄杆內側。</p>
+      </div>
+      <div class="nearby-grid">
+        {
+          spots.map((s) => (
+            <article>
+              <span>取景點</span>
+              <h3>{s.title}</h3>
+              <p>{s.text}</p>
+            </article>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <section class="section night-section" aria-labelledby="timeline-title">
+    <div class="shell">
+      <div class="section-heading centered-heading">
+        <p class="kicker">時間節奏</p>
+        <h2 id="timeline-title">幾點來，效果最好</h2>
+        <p>掌握光線變化的節奏，不必昂貴器材，手機也能拍出雨港的層次。日落時間隨季節調整，出發前可參考本頁即時天氣的日落資訊。</p>
+      </div>
+      <div class="seasons-table-wrap night-table-wrap">
+        <table class="seasons-table">
+          <thead>
+            <tr>
+              <th scope="col">時段</th>
+              <th scope="col">光線狀態</th>
+              <th scope="col">適合拍什麼</th>
+              <th scope="col">提醒</th>
+            </tr>
+          </thead>
+          <tbody>
+            {
+              timeline.map((row) => (
+                <tr>
+                  <th scope="row">{row.time}</th>
+                  <td>{row.light}</td>
+                  <td>{row.subject}</td>
+                  <td>{row.note}</td>
+                </tr>
+              ))
+            }
+          </tbody>
+        </table>
+      </div>
+      <p class="seasons-note">日落時間與天色變化隨季節調整，實際請以現場與即時天氣資訊為準；拍攝時請全程留在護欄內側，並留意夜間防風與防滑。</p>
+    </div>
+  </section>
+
+  <section class="section rain-section" aria-labelledby="safety-title">
+    <div class="shell rain-layout">
+      <figure>
+        <img src="/images/photo-night.webp" width="1200" height="900" loading="lazy" alt="夜晚基隆海洋廣場的燈光與水面倒影" />
+        <figcaption>夜間燈光與水面倒影，是基隆海洋廣場最被低估的畫面之一。</figcaption>
+      </figure>
+      <div class="rain-copy">
+        <p class="kicker">夜間安全提醒</p>
+        <h2 id="safety-title">看夜景，也要走得安心</h2>
+        <ul class="check-list">
+          <li><span>✓</span><div><strong>與護欄保持距離</strong><p>拍攝船隻或燈火時，留在公共步行範圍內，不跨越欄杆。</p></div></li>
+          <li><span>✓</span><div><strong>木棧濕滑要防滑</strong><p>夜間水氣與雨後更明顯，穿著防滑鞋、放慢腳步。</p></div></li>
+          <li><span>✓</span><div><strong>港邊風大要保暖</strong><p>臨海位置體感溫度較低，入夜後建議多帶一件外套。</p></div></li>
+          <li><span>✓</span><div><strong>回程預留交通時間</strong><p>若搭末班車或客運，請先確認時刻，避免流連到無車可搭。</p></div></li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section class="section faq-section" id="faq">
+    <div class="shell faq-layout">
+      <div class="section-heading sticky-heading">
+        <p class="kicker">常見問題</p>
+        <h2>看夜景前，快速確認</h2>
+        <p>以下整理夜間造訪最常遇到的問題。重點是「時間」與「安全」：抓準藍調時刻，並留意防風防滑。</p>
+      </div>
+      <div class="faq-list">
+        {faqs.map((f) => (
+          <details>
+            <summary>{f.q}<span></span></summary>
+            <p>{f.a}</p>
+          </details>
+        ))}
+      </div>
+    </div>
+  </section>
+</SubpageLayout>
