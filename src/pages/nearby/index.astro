@@ -1,0 +1,8 @@
+---
+import SubpageLayout from '../../components/SubpageLayout.astro';
+import { nearby } from '../../data/nearby';
+---
+<SubpageLayout title="基隆海洋廣場周邊景點｜國門廣場、廟口、慶安宮與基隆塔" description="從基隆海洋廣場出發，探索國門廣場、基隆廟口夜市、慶安宮、基隆塔與港口東岸。每處提供景點介紹、交通、拍攝與地圖導航。" path="/nearby/">
+  <section class="subhero"><div class="shell"><p class="kicker">周邊探索</p><h1>從海洋廣場<br />走進基隆港城</h1><p class="subhero-lead">從車站門戶到媽祖信仰、夜市街區和山海視野，依照時間選擇適合的景點。每張卡片皆通往獨立指南。</p><div class="subhero-actions"><a class="button button-solid" href="/">返回海洋廣場</a></div></div></section>
+  <section class="section"><div class="shell"><div class="section-heading"><p class="kicker">地點指南</p><h2>周邊景點與散步路線</h2><p>選擇想看的主題，再進一步查閱當地位置、參觀方式及交通。出發前仍請核對現場資訊。</p></div><div class="nearby-grid nearby-photo-grid">{nearby.map(item => <article><a href={`/nearby/${item.slug}/`}><img src={item.image} alt={item.imageAlt} width="600" height="400" loading="lazy" /></a><span>{item.tag}</span><h3><a href={`/nearby/${item.slug}/`}>{item.name} →</a></h3><p>{item.intro}</p><p class="nearby-action"><a class="text-link text-link-dark" href={`/nearby/${item.slug}/`}>查看景點攻略 →</a></p></article>)}</div></div></section>
+</SubpageLayout>
