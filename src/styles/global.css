@@ -464,6 +464,17 @@ svg { display: block; }
 .nearby-feature-photo img { width: 100%; height: auto; max-height: 600px; object-fit: cover; border-radius: 22px; }
 .nearby-feature-photo figcaption { margin-top: 12px; font-size: 13px; color: var(--ink-soft); }
 .nearby-feature-photo figcaption a { text-decoration: underline; }
+.nearby-hero-meta { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 22px; }
+.nearby-hero-meta span { border: 1px solid rgba(255,255,255,.32); border-radius: 999px; padding: 5px 13px; color: rgba(255,255,255,.86); font-size: 13px; }
+.nearby-about { background: var(--white); padding: 72px 0; }
+.nearby-about-card { max-width: 1050px; padding: clamp(25px,5vw,64px); border-left: 5px solid var(--warm); border-radius: 20px; background: var(--fog); }
+.nearby-about-card h2 { margin: 0 0 18px; font-size: clamp(30px,3.5vw,48px); line-height: 1.2; }
+.nearby-about-card h3 { margin: 26px 0 7px; font-size: 21px; }
+.nearby-about-card p { color: var(--ink-soft); margin: 0 0 14px; }
+.nearby-faq { display: grid; gap: 13px; margin-top: 25px; }
+.nearby-faq details { border: 1px solid var(--line); background: var(--white); border-radius: 14px; padding: 18px 22px; }
+.nearby-faq summary { cursor: pointer; font-weight: 750; }
+.nearby-faq p { color: var(--ink-soft); margin: 15px 0 0; }
 @media(max-width:980px) { .nearby-photo-grid { grid-template-columns: repeat(2,minmax(0,1fr)); } }
 @media(max-width:700px) { .nearby-detail .nearby-facts, .nearby-columns { grid-template-columns: 1fr; } }
 @media(max-width:700px) { .nearby-photo-grid { grid-template-columns: 1fr; } }
