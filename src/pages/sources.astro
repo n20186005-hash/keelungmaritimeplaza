@@ -1,0 +1,13 @@
+---
+import SubpageLayout from '../components/SubpageLayout.astro';
+const mapsShareUrl = 'https://maps.app.goo.gl/Rug87UtBSy7vggwb8';
+const govTourismUrl = 'https://klctb.klcg.gov.tw/';
+const cwaUrl = 'https://www.cwa.gov.tw/';
+---
+<SubpageLayout title="資料來源與更新說明｜基隆海洋廣場" description="基隆海洋廣場旅遊指南的評價、官方旅遊、氣象、港口歷史與參考資料來源。" path="/sources/">
+  <section class="subhero"><div class="shell"><p class="kicker">SOURCES & UPDATES</p><h1>資料來源與更新說明</h1><p class="subhero-lead">查看基隆海洋廣場的景點資料依據、公開參考來源與動態資訊核對方式。</p></div></section>
+  <section class="section"><div class="shell"><div class="section-heading"><p class="kicker">參觀資訊</p><h2>開放、交通與港務動態</h2><p>開放狀態、交通、活動、施工與船期可能調整，出發前請以主管機關及現場最新公告為準。</p></div><div class="nearby-columns"><article><h3>官方旅遊資訊</h3><p>景點介紹、活動及參觀資訊以<a href={govTourismUrl} target="_blank" rel="noopener noreferrer">基隆市文化觀光局</a>公告為重要參考。</p></article><article><h3>港口與交通</h3><p>船期與港區作業參考<a href="https://www.twport.com.tw/" target="_blank" rel="noopener noreferrer">臺灣港務公司</a>；市區活動及交通措施參考<a href="https://www.klcg.gov.tw/" target="_blank" rel="noopener noreferrer">基隆市政府</a>最新公告。</p></article></div></div></section>
+  <section class="section nearby-muted"><div class="shell"><div class="section-heading"><p class="kicker">GOOGLE MAPS</p><h2>評分與旅客評價</h2><p>評價 · 同步時間 2026 年 10 月</p></div><p>評分與評價資訊同步自 Google 地圖用戶評價；評分與評價內容版權歸原作者與 Google 地圖所有。</p><p><a class="text-link text-link-dark" href={mapsShareUrl} target="_blank" rel="noopener noreferrer">在 Google 地圖查看全部評價 ↗</a></p></div></section>
+  <section class="section"><div class="shell"><div class="section-heading"><p class="kicker">氣象觀測</p><h2>天氣與氣候資料</h2></div><p>即時天氣與未來一週預報由本站在伺服器端取得並快取後顯示，僅供行程參考；實際天況、海上與陸上警特報請以<a href={cwaUrl} target="_blank" rel="noopener noreferrer">交通部中央氣象署</a>發布為準。</p><p>季度策略表參考中央氣象署 1991–2020 年長期氣候平均與港區長期觀察整理，非即時監測值。</p></div></section>
+  <section class="section nearby-muted"><div class="shell"><div class="section-heading"><p class="kicker">在地知識</p><h2>歷史與生態內容</h2></div><p>港口沿革、地名由來與地方傳說依公開史料、官方出版品與地方口傳整理；傳說與俗諺版本眾多，僅供延伸閱讀，若有出入以主管機關與正式出版品為準。</p><h3>官方與參考來源</h3><ul><li><a href={govTourismUrl} target="_blank" rel="noopener noreferrer">基隆市文化觀光局</a></li><li><a href="https://www.klcg.gov.tw/" target="_blank" rel="noopener noreferrer">基隆市政府</a></li><li><a href="https://www.taiwan.net.tw/" target="_blank" rel="noopener noreferrer">交通部觀光署</a></li><li><a href={cwaUrl} target="_blank" rel="noopener noreferrer">交通部中央氣象署</a></li><li><a href="https://www.twport.com.tw/" target="_blank" rel="noopener noreferrer">臺灣港務公司</a></li></ul><p><a class="text-link text-link-dark" href="/image-credits/">查看圖片來源與授權 →</a></p></div></section>
+</SubpageLayout>

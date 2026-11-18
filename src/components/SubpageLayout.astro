@@ -19,9 +19,6 @@ const {
 const canonical = `https://keelungmaritimeplaza.com${path}`;
 const mapNavigationUrl =
   "https://www.google.com/maps/dir/?api=1&destination=25.1309627%2C121.7413639";
-const mapsShareUrl = "https://maps.app.goo.gl/Rug87UtBSy7vggwb8";
-const govTourismUrl = "https://klctb.klcg.gov.tw/";
-const cwaUrl = "https://www.cwa.gov.tw/";
 
 const pages = [
   { href: "/parking/", label: "停車場攻略" },
@@ -66,7 +63,7 @@ const pages = [
       gtag('js', new Date());
       gtag('config', 'G-HXM22WWPKP');
     </script>
-    {jsonLd.map((item) => <script type="application/ld+json" set:html={item} />)}
+    {jsonLd.map((item) => <script is:inline type="application/ld+json" set:html={item} />)}
   </head>
   <body class="subpage-body">
     <a class="skip-link" href="#main">跳到主要內容</a>
@@ -116,13 +113,11 @@ const pages = [
           <a href="/#faq">常見問題</a>
           <a href="/privacy/">隱私權說明</a>
           <a href="/image-credits/">圖片來源與授權</a>
+          <a href="/sources/">資料來源與更新</a>
         </div>
         <div class="footer-sources">
           <h3>資料來源</h3>
-          <p class="source-note"><strong>官方旅遊資訊：</strong><a href={govTourismUrl} target="_blank" rel="noopener noreferrer">基隆市文化觀光局（klctb.klcg.gov.tw）↗</a></p>
-          <p class="source-note"><strong>Google 地圖景點評價：</strong><a href={mapsShareUrl} target="_blank" rel="noopener noreferrer">在谷歌地圖查看全部評價 ↗</a></p>
-          <p class="source-note"><strong>天氣與氣候：</strong>即時天氣由本站在伺服器端取得後顯示，僅供參考；實際天況與警特報請以<a href={cwaUrl} target="_blank" rel="noopener noreferrer">交通部中央氣象署（cwa.gov.tw）↗</a>為準。</p>
-          <p class="source-note">停車費率、營業時間、車位狀態與交通班次可能變動，出發前請以主管機關及現場最新公告為準。</p>
+          <a href="/sources/">查看評價、官方旅遊、氣候與歷史資料來源 →</a>
         </div>
       </div>
       <div class="shell footer-bottom">
