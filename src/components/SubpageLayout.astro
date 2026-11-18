@@ -5,6 +5,7 @@ interface Props {
   path: string;
   ogImage?: string;
   jsonLd?: string[];
+  mapUrl?: string;
 }
 const {
   title,
@@ -12,6 +13,7 @@ const {
   path,
   ogImage = "https://keelungmaritimeplaza.com/og/keelung-maritime-plaza-og.jpg",
   jsonLd = [],
+  mapUrl,
 } = Astro.props;
 
 const canonical = `https://keelungmaritimeplaza.com${path}`;
@@ -84,7 +86,7 @@ const pages = [
           {pages.map((p) => <a href={p.href}>{p.label}</a>)}
           <a href="/#faq">常見問題</a>
         </nav>
-        <a class="button button-small button-solid header-cta" href={mapNavigationUrl} target="_blank" rel="noopener noreferrer">
+        <a class="button button-small button-solid header-cta" href={mapUrl ?? mapNavigationUrl} target="_blank" rel="noopener noreferrer">
           <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 21s7-6 7-12a7 7 0 1 0-14 0c0 6 7 12 7 12Z"/><circle cx="12" cy="9" r="2.4"/></svg>
           開啟地圖
         </a>
@@ -113,6 +115,7 @@ const pages = [
           <a href="/nearby/">周邊景點</a>
           <a href="/#faq">常見問題</a>
           <a href="/privacy/">隱私權說明</a>
+          <a href="/image-credits/">圖片來源與授權</a>
         </div>
         <div class="footer-sources">
           <h3>資料來源</h3>
@@ -123,8 +126,7 @@ const pages = [
         </div>
       </div>
       <div class="shell footer-bottom">
-        <span>© 2026 KeelungMaritimePlaza.com</span>
-        <span>為旅客整理的基隆港散步入口</span>
+        <span>© 2026 基隆海洋廣場 · 版權所有</span>
       </div>
     </footer>
 
